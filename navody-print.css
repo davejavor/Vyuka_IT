@@ -157,7 +157,7 @@ h1 {
   border-bottom: 3px solid var(--color-secondary);
   padding-bottom: 10px;
   margin-bottom: 20px;
-  page-break-after: avoid;
+  break-after: avoid;
 }
 
 h2 {
@@ -167,7 +167,7 @@ h2 {
   margin-bottom: 10px;
   border-left: 4px solid var(--color-secondary);
   padding-left: 10px;
-  page-break-after: avoid;
+  break-after: avoid;
 }
 
 h3 {
@@ -175,7 +175,7 @@ h3 {
   color: var(--color-primary);
   margin-top: 14px;
   margin-bottom: 6px;
-  page-break-after: avoid;
+  break-after: avoid;
 }
 
 h4 {
@@ -221,7 +221,7 @@ hr.section-divider {
   border-radius: var(--border-radius);
   padding: 14px;
   margin: var(--spacing-section) 0;
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 /* Rozbalovací sekce */
@@ -229,7 +229,7 @@ details {
   margin: 10px 0;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 details summary {
@@ -277,7 +277,7 @@ pre {
   font-size: 0.82em;
   line-height: 1.5;
   margin: 8px 0 12px;
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 pre code {
@@ -305,7 +305,7 @@ table {
   border-collapse: collapse;
   margin: 12px 0;
   font-size: 0.9em;
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 th {
@@ -354,7 +354,7 @@ table.truth-table td {
   padding: 10px 14px;
   margin: 12px 0;
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
-  page-break-inside: avoid;
+  break-inside: avoid;
   font-size: 0.93em;
 }
 
@@ -365,7 +365,7 @@ table.truth-table td {
   padding: 10px 14px;
   margin: 12px 0;
   border-radius: 0 var(--border-radius) var(--border-radius) 0;
-  page-break-inside: avoid;
+  break-inside: avoid;
   font-size: 0.93em;
 }
 
@@ -474,7 +474,7 @@ img {
 figure {
   margin: 12px 0;
   text-align: center;
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 figcaption {
@@ -491,7 +491,7 @@ figcaption {
   border-radius: var(--border-radius);
   padding: 10px;
   margin: 12px 0;
-  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 /* ===================================
@@ -543,27 +543,13 @@ footer a:hover,
   body {
     max-width: none;
     padding: 0;
-    font-size: 10.5pt;
+    font-size: 9pt;
     background: white;
     color: black;
   }
 
-  /* Formát stránky — výchozí A4 */
+  /* Formát stránky — A5 */
   @page {
-    size: A4;
-    margin: 15mm;
-  }
-
-  /* Formát A5 — třída na <html> */
-  html.print-a5 {
-    font-size: 9.5pt;
-  }
-
-  html.print-a5 body {
-    font-size: 9.5pt;
-  }
-
-  @page :html.print-a5 {
     size: A5;
     margin: 12mm;
   }
@@ -613,8 +599,8 @@ footer a:hover,
   }
 
   /* Stránkování */
-  h1 { page-break-before: avoid; }
-  h2, h3, h4 { page-break-after: avoid; }
+  h1 { break-before: avoid; }
+  h2, h3, h4 { break-after: avoid; }
 
   .section,
   .step,
@@ -625,7 +611,7 @@ footer a:hover,
   details,
   .step-row,
   .two-col {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   /* Rozbal všechny details při tisku */
