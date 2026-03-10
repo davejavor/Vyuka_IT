@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS — Kompletní přehled</title>
+  <link rel="stylesheet" href="navody-print.css">
+</head>
+<body class="theme-css">
+
+<header class="doc-header">
+  <span class="badge">CSS</span>
+  <h1>Kompletní přehled CSS</h1>
+  <p class="subtitle">Cascading Style Sheets — jak webové stránky vypadají</p>
+</header>
+
+<!-- ====================================================
+     CO JE CSS
+     ==================================================== -->
+<section class="section">
+  <h2>Co je to CSS?</h2>
+  <p>CSS (<em>Cascading Style Sheets</em>) určuje <strong>vzhled</strong> HTML stránek — barvy, velikosti, rozmístění a animace. HTML = obsah a struktura, CSS = vizuální podoba.</p>
+
+  <div class="two-col">
+    <div>
+      <h4>Výhody CSS:</h4>
+      <ul>
+        <li>Oddělení obsahu od vzhledu</li>
+        <li>Jeden soubor pro celý web</li>
+        <li>Rychlejší načítání stránek</li>
+        <li>Responzivní design</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Vývoj:</h4>
+      <ul>
+        <li>1996 — CSS1</li>
+        <li>1998 — CSS2</li>
+        <li>dnes — CSS3 (modulární)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     PŘIPOJENÍ CSS
+     ==================================================== -->
+<section class="section">
+  <h2>Jak připojit CSS k HTML</h2>
+
+  <h3>1. Externí soubor <small>(doporučeno)</small></h3>
+<pre><span class="hl-cmt">&lt;!-- V sekci &lt;head&gt; --&gt;</span>
+<span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"stylesheet"</span> <span class="hl-attr">href</span>=<span class="hl-val">"styl.css"</span><span class="hl-tag">&gt;</span></pre>
+
+  <h3>2. Interní CSS (v hlavičce HTML)</h3>
+<pre><span class="hl-tag">&lt;style&gt;</span>
+  <span class="hl-sel">body</span> { <span class="hl-prop">background</span>: <span class="hl-val">#f0f0f0</span>; }
+<span class="hl-tag">&lt;/style&gt;</span></pre>
+
+  <h3>3. Inline CSS (přímo v tagu)</h3>
+<pre><span class="hl-tag">&lt;h1</span> <span class="hl-attr">style</span>=<span class="hl-val">"color: blue; font-size: 24px;"</span><span class="hl-tag">&gt;</span>Nadpis<span class="hl-tag">&lt;/h1&gt;</span></pre>
+
+  <div class="tip">Vždy preferuj <strong>externí soubor</strong> — je nejpřehlednější a platí pro celý web najednou.</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     SELEKTORY
+     ==================================================== -->
+<section class="section">
+  <h2>Selektory</h2>
+  <p>Selektor říká, <em>na které HTML prvky</em> se pravidlo vztahuje.</p>
+
+<pre><span class="hl-cmt">/* Typ prvku */</span>
+<span class="hl-sel">p</span> { <span class="hl-prop">color</span>: <span class="hl-val">red</span>; }
+
+<span class="hl-cmt">/* ID — pouze jeden prvek na stránce */</span>
+<span class="hl-sel">#hlavni-nadpis</span> { <span class="hl-prop">font-size</span>: <span class="hl-val">32px</span>; }
+
+<span class="hl-cmt">/* Třída — více prvků */</span>
+<span class="hl-sel">.zvyrazneny</span> { <span class="hl-prop">font-weight</span>: <span class="hl-val">bold</span>; }
+
+<span class="hl-cmt">/* Všechny prvky */</span>
+<span class="hl-sel">*</span> { <span class="hl-prop">margin</span>: <span class="hl-val">0</span>; <span class="hl-prop">padding</span>: <span class="hl-val">0</span>; }</pre>
+
+  <h3>Kombinátory</h3>
+<pre><span class="hl-cmt">/* Potomek — všechny &lt;p&gt; uvnitř &lt;div&gt; */</span>
+<span class="hl-sel">div p</span> { <span class="hl-prop">text-indent</span>: <span class="hl-val">20px</span>; }
+
+<span class="hl-cmt">/* Přímý potomek */</span>
+<span class="hl-sel">div > p</span> { <span class="hl-prop">border</span>: <span class="hl-val">1px solid black</span>; }
+
+<span class="hl-cmt">/* Pseudo-třída — při najetí myší */</span>
+<span class="hl-sel">a:hover</span> { <span class="hl-prop">text-decoration</span>: <span class="hl-val">none</span>; }</pre>
+
+  <table>
+    <thead><tr><th>Selektor</th><th>Vybere</th><th>Příklad</th></tr></thead>
+    <tbody>
+      <tr><td><code>p</code></td><td>Všechny odstavce</td><td><code>p { color: red; }</code></td></tr>
+      <tr><td><code>#id</code></td><td>Prvek s daným ID</td><td><code>#menu { … }</code></td></tr>
+      <tr><td><code>.trida</code></td><td>Prvky se třídou</td><td><code>.box { … }</code></td></tr>
+      <tr><td><code>*</code></td><td>Všechny prvky</td><td><code>* { … }</code></td></tr>
+      <tr><td><code>a:hover</code></td><td>Odkaz při najetí myší</td><td><code>a:hover { … }</code></td></tr>
+      <tr><td><code>p::first-letter</code></td><td>První písmeno odstavce</td><td><code>p::first-letter { … }</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     BARVY
+     ==================================================== -->
+<section class="section">
+  <h2>Barvy a pozadí</h2>
+
+<pre><span class="hl-sel">p</span> {
+  <span class="hl-prop">color</span>: <span class="hl-val">red</span>;                        <span class="hl-cmt">/* název barvy */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">#ff0000</span>;                    <span class="hl-cmt">/* hexadecimálně */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">rgb(255, 0, 0)</span>;             <span class="hl-cmt">/* RGB */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">rgba(255, 0, 0, 0.5)</span>;       <span class="hl-cmt">/* RGB + průhlednost */</span>
+}
+
+<span class="hl-sel">div</span> {
+  <span class="hl-prop">background-color</span>: <span class="hl-val">#f0f0f0</span>;
+  <span class="hl-prop">background-image</span>: <span class="hl-val">url('pozadi.jpg')</span>;
+  <span class="hl-prop">background-repeat</span>: <span class="hl-val">no-repeat</span>;
+  <span class="hl-prop">background-size</span>: <span class="hl-val">cover</span>;
+}
+
+<span class="hl-cmt">/* Přechod (gradient) */</span>
+<span class="hl-sel">.box</span> {
+  <span class="hl-prop">background</span>: <span class="hl-val">linear-gradient(to right, red, yellow)</span>;
+}</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TYPOGRAFIE
+     ==================================================== -->
+<section class="section">
+  <h2>Text a typografie</h2>
+
+<pre><span class="hl-sel">body</span> {
+  <span class="hl-prop">font-family</span>: <span class="hl-val">Arial, sans-serif</span>;    <span class="hl-cmt">/* rodina písma */</span>
+  <span class="hl-prop">font-size</span>: <span class="hl-val">16px</span>;                   <span class="hl-cmt">/* velikost */</span>
+  <span class="hl-prop">font-weight</span>: <span class="hl-val">bold</span>;                  <span class="hl-cmt">/* tučnost: normal, bold, 100–900 */</span>
+  <span class="hl-prop">font-style</span>: <span class="hl-val">italic</span>;                <span class="hl-cmt">/* kurzíva */</span>
+  <span class="hl-prop">line-height</span>: <span class="hl-val">1.5</span>;                  <span class="hl-cmt">/* výška řádku */</span>
+}
+
+<span class="hl-sel">p</span> {
+  <span class="hl-prop">text-align</span>: <span class="hl-val">center</span>;               <span class="hl-cmt">/* left | right | center | justify */</span>
+  <span class="hl-prop">text-decoration</span>: <span class="hl-val">underline</span>;        <span class="hl-cmt">/* podtržení */</span>
+  <span class="hl-prop">text-transform</span>: <span class="hl-val">uppercase</span>;        <span class="hl-cmt">/* VELKÁ PÍSMENA */</span>
+  <span class="hl-prop">letter-spacing</span>: <span class="hl-val">2px</span>;              <span class="hl-cmt">/* mezery mezi písmeny */</span>
+}</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     BOX MODEL
+     ==================================================== -->
+<section class="section">
+  <h2>Box model</h2>
+  <p>Každý HTML prvek je obdélníkový box se čtyřmi vrstvami:</p>
+
+<pre>+---------------------------+
+|         margin            |  ← vnější okraj
+|  +---------------------+  |
+|  |       border        |  |  ← ohraničení
+|  |  +--------------+   |  |
+|  |  |   padding    |   |  |  ← vnitřní odsazení
+|  |  |  +--------+  |   |  |
+|  |  |  | obsah  |  |   |  |  ← samotný obsah
+|  |  |  +--------+  |   |  |
+|  |  +--------------+   |  |
+|  +---------------------+  |
++---------------------------+</pre>
+
+<pre><span class="hl-sel">div</span> {
+  <span class="hl-prop">width</span>: <span class="hl-val">300px</span>;                       <span class="hl-cmt">/* šířka obsahu */</span>
+  <span class="hl-prop">padding</span>: <span class="hl-val">20px</span>;                      <span class="hl-cmt">/* vnitřní odsazení */</span>
+  <span class="hl-prop">border</span>: <span class="hl-val">2px solid black</span>;            <span class="hl-cmt">/* ohraničení */</span>
+  <span class="hl-prop">margin</span>: <span class="hl-val">30px</span>;                       <span class="hl-cmt">/* vnější okraj */</span>
+  <span class="hl-prop">box-sizing</span>: <span class="hl-val">border-box</span>;            <span class="hl-cmt">/* padding a border zahrnuty do width */</span>
+}</pre>
+
+  <h3>Zkrácené zápisy (margin / padding)</h3>
+  <table>
+    <thead><tr><th>Zápis</th><th>Platí pro</th></tr></thead>
+    <tbody>
+      <tr><td><code>margin: 20px</code></td><td>Všechny čtyři strany stejně</td></tr>
+      <tr><td><code>margin: 10px 20px</code></td><td>Nahoře+dole / vlevo+vpravo</td></tr>
+      <tr><td><code>margin: 10px 20px 15px 25px</code></td><td>Nahoře / vpravo / dole / vlevo (po hodinových ručičkách)</td></tr>
+      <tr><td><code>margin: 0 auto</code></td><td>Horizontální centrování bloku</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     POZICOVÁNÍ
+     ==================================================== -->
+<section class="section">
+  <h2>Pozicování prvků</h2>
+
+<pre><span class="hl-sel">.static</span>   { <span class="hl-prop">position</span>: <span class="hl-val">static</span>; }    <span class="hl-cmt">/* výchozí — v toku stránky */</span>
+<span class="hl-sel">.relative</span> { <span class="hl-prop">position</span>: <span class="hl-val">relative</span>;    <span class="hl-cmt">/* posunutý od původní pozice */</span>
+             <span class="hl-prop">top</span>: <span class="hl-val">20px</span>; <span class="hl-prop">left</span>: <span class="hl-val">30px</span>; }
+<span class="hl-sel">.absolute</span> { <span class="hl-prop">position</span>: <span class="hl-val">absolute</span>;    <span class="hl-cmt">/* vůči nejbližšímu pozicovanému předkovi */</span>
+             <span class="hl-prop">top</span>: <span class="hl-val">0</span>; <span class="hl-prop">right</span>: <span class="hl-val">0</span>; }
+<span class="hl-sel">.fixed</span>    { <span class="hl-prop">position</span>: <span class="hl-val">fixed</span>;      <span class="hl-cmt">/* vůči oknu, zůstane i při scrollování */</span>
+             <span class="hl-prop">top</span>: <span class="hl-val">10px</span>; <span class="hl-prop">right</span>: <span class="hl-val">20px</span>; }
+<span class="hl-sel">.sticky</span>   { <span class="hl-prop">position</span>: <span class="hl-val">sticky</span>;     <span class="hl-cmt">/* kombinace relative + fixed */</span>
+             <span class="hl-prop">top</span>: <span class="hl-val">0</span>; }</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FLEXBOX
+     ==================================================== -->
+<section class="section">
+  <h2>Flexbox</h2>
+  <p>Moderní způsob rozmístění prvků v jedné ose (řádek nebo sloupec).</p>
+
+<pre><span class="hl-cmt">/* Kontejner */</span>
+<span class="hl-sel">.flex-container</span> {
+  <span class="hl-prop">display</span>: <span class="hl-val">flex</span>;
+  <span class="hl-prop">flex-direction</span>: <span class="hl-val">row</span>;              <span class="hl-cmt">/* row | column */</span>
+  <span class="hl-prop">justify-content</span>: <span class="hl-val">space-between</span>;  <span class="hl-cmt">/* rozmístění na hlavní ose */</span>
+  <span class="hl-prop">align-items</span>: <span class="hl-val">center</span>;             <span class="hl-cmt">/* zarovnání na příčné ose */</span>
+  <span class="hl-prop">flex-wrap</span>: <span class="hl-val">wrap</span>;                  <span class="hl-cmt">/* zalomení na další řádek */</span>
+  <span class="hl-prop">gap</span>: <span class="hl-val">1rem</span>;                        <span class="hl-cmt">/* mezery mezi položkami */</span>
+}
+
+<span class="hl-cmt">/* Položka */</span>
+<span class="hl-sel">.flex-item</span> {
+  <span class="hl-prop">flex-grow</span>: <span class="hl-val">1</span>;                     <span class="hl-cmt">/* jak moc může narůst */</span>
+  <span class="hl-prop">flex-basis</span>: <span class="hl-val">200px</span>;               <span class="hl-cmt">/* výchozí velikost */</span>
+}</pre>
+
+  <table>
+    <thead><tr><th><code>justify-content</code></th><th>Chování</th></tr></thead>
+    <tbody>
+      <tr><td><code>flex-start</code></td><td>Na začátek (výchozí)</td></tr>
+      <tr><td><code>flex-end</code></td><td>Na konec</td></tr>
+      <tr><td><code>center</code></td><td>Na střed</td></tr>
+      <tr><td><code>space-between</code></td><td>Rovnoměrně, krajní na okrajích</td></tr>
+      <tr><td><code>space-around</code></td><td>Rovnoměrně, mezery i na okrajích</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     GRID
+     ==================================================== -->
+<section class="section">
+  <h2>CSS Grid</h2>
+  <p>Dvourozměrný systém pro rozvržení stránek — řádky i sloupce zároveň.</p>
+
+<pre><span class="hl-cmt">/* Kontejner */</span>
+<span class="hl-sel">.grid</span> {
+  <span class="hl-prop">display</span>: <span class="hl-val">grid</span>;
+  <span class="hl-prop">grid-template-columns</span>: <span class="hl-val">1fr 2fr 1fr</span>;  <span class="hl-cmt">/* 3 sloupce v poměru 1:2:1 */</span>
+  <span class="hl-prop">grid-template-columns</span>: <span class="hl-val">repeat(3, 1fr)</span>;<span class="hl-cmt">/* 3 stejně široké sloupce */</span>
+  <span class="hl-prop">gap</span>: <span class="hl-val">1rem</span>;
+}
+
+<span class="hl-cmt">/* Položka přes více sloupců/řádků */</span>
+<span class="hl-sel">.wide</span> {
+  <span class="hl-prop">grid-column</span>: <span class="hl-val">1 / 3</span>;                 <span class="hl-cmt">/* od 1. do 3. čáry = 2 sloupce */</span>
+  <span class="hl-prop">grid-column</span>: <span class="hl-val">span 2</span>;                <span class="hl-cmt">/* totéž, jiný zápis */</span>
+}</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TRANSFORMACE A PŘECHODY
+     ==================================================== -->
+<section class="section">
+  <h2>Transformace a přechody</h2>
+
+  <h3>Transformace</h3>
+<pre><span class="hl-sel">div</span> {
+  <span class="hl-prop">transform</span>: <span class="hl-val">translate(50px, 20px)</span>;  <span class="hl-cmt">/* posun */</span>
+  <span class="hl-prop">transform</span>: <span class="hl-val">rotate(45deg)</span>;          <span class="hl-cmt">/* otočení */</span>
+  <span class="hl-prop">transform</span>: <span class="hl-val">scale(1.5)</span>;             <span class="hl-cmt">/* zvětšení */</span>
+}</pre>
+
+  <h3>Plynné přechody (transitions)</h3>
+<pre><span class="hl-sel">button</span> {
+  <span class="hl-prop">background</span>: <span class="hl-val">blue</span>;
+  <span class="hl-prop">transition</span>: <span class="hl-val">background 0.3s ease</span>;   <span class="hl-cmt">/* co | jak dlouho | průběh */</span>
+}
+<span class="hl-sel">button:hover</span> {
+  <span class="hl-prop">background</span>: <span class="hl-val">darkblue</span>;
+}</pre>
+
+  <h3>Animace</h3>
+<pre><span class="hl-cmt">/* Definice klíčových snímků */</span>
+<span class="hl-kw">@keyframes</span> posun {
+  <span class="hl-val">0%</span>   { <span class="hl-prop">transform</span>: <span class="hl-val">translateX(0)</span>; }
+  <span class="hl-val">100%</span> { <span class="hl-prop">transform</span>: <span class="hl-val">translateX(200px)</span>; }
+}
+
+<span class="hl-cmt">/* Použití animace */</span>
+<span class="hl-sel">.animovany</span> {
+  <span class="hl-prop">animation</span>: <span class="hl-val">posun 2s ease-in-out infinite alternate</span>;
+}</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     MEDIA QUERIES
+     ==================================================== -->
+<section class="section">
+  <h2>Media Queries — responzivní design</h2>
+  <p>Různé styly podle velikosti obrazovky (mobil, tablet, počítač).</p>
+
+<pre><span class="hl-cmt">/* Výchozí styl (pro velké obrazovky) */</span>
+<span class="hl-sel">body</span> { <span class="hl-prop">font-size</span>: <span class="hl-val">16px</span>; }
+
+<span class="hl-cmt">/* Pro obrazovky do 600px (mobily) */</span>
+<span class="hl-kw">@media</span> (<span class="hl-prop">max-width</span>: <span class="hl-val">600px</span>) {
+  <span class="hl-sel">body</span> { <span class="hl-prop">font-size</span>: <span class="hl-val">14px</span>; }
+  <span class="hl-sel">.menu</span> { <span class="hl-prop">display</span>: <span class="hl-val">none</span>; }
+}
+
+<span class="hl-cmt">/* Tisk */</span>
+<span class="hl-kw">@media</span> print {
+  <span class="hl-sel">nav, footer</span> { <span class="hl-prop">display</span>: <span class="hl-val">none</span>; }
+}
+
+<span class="hl-cmt">/* Tmavý režim */</span>
+<span class="hl-kw">@media</span> (<span class="hl-prop">prefers-color-scheme</span>: <span class="hl-val">dark</span>) {
+  <span class="hl-sel">body</span> { <span class="hl-prop">background</span>: <span class="hl-val">#222</span>; <span class="hl-prop">color</span>: <span class="hl-val">white</span>; }
+}</pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TIPY
+     ==================================================== -->
+<section class="section">
+  <h2>Tipy a triky</h2>
+
+  <h3>Centrování prvků</h3>
+<pre><span class="hl-cmt">/* Blokový prvek horizontálně */</span>
+<span class="hl-sel">.box</span> { <span class="hl-prop">margin</span>: <span class="hl-val">0 auto</span>; <span class="hl-prop">width</span>: <span class="hl-val">80%</span>; }
+
+<span class="hl-cmt">/* Flexbox — horizontálně i vertikálně */</span>
+<span class="hl-sel">.centrovany</span> {
+  <span class="hl-prop">display</span>: <span class="hl-val">flex</span>;
+  <span class="hl-prop">justify-content</span>: <span class="hl-val">center</span>;
+  <span class="hl-prop">align-items</span>: <span class="hl-val">center</span>;
+  <span class="hl-prop">height</span>: <span class="hl-val">300px</span>;
+}
+
+<span class="hl-cmt">/* Grid — zkrácený zápis */</span>
+<span class="hl-sel">.grid-center</span> {
+  <span class="hl-prop">display</span>: <span class="hl-val">grid</span>;
+  <span class="hl-prop">place-items</span>: <span class="hl-val">center</span>;
+}</pre>
+
+  <h3>CSS proměnné</h3>
+<pre><span class="hl-cmt">/* Definice v :root (platí pro celou stránku) */</span>
+<span class="hl-sel">:root</span> {
+  <span class="hl-prop">--barva-primarni</span>: <span class="hl-val">#1a56a0</span>;
+  <span class="hl-prop">--mezera</span>: <span class="hl-val">1rem</span>;
+}
+
+<span class="hl-cmt">/* Použití */</span>
+<span class="hl-sel">h1</span> { <span class="hl-prop">color</span>: <span class="hl-val">var(--barva-primarni)</span>; }
+<span class="hl-sel">.box</span> { <span class="hl-prop">padding</span>: <span class="hl-val">var(--mezera)</span>; }</pre>
+
+  <div class="tip">Proměnné ti ušetří čas — barvy a rozměry změníš na jednom místě pro celý web.</div>
+
+  <h3>Responzivní obrázky bez media queries</h3>
+<pre><span class="hl-sel">img</span> {
+  <span class="hl-prop">max-width</span>: <span class="hl-val">100%</span>;
+  <span class="hl-prop">height</span>: <span class="hl-val">auto</span>;
+}</pre>
+</section>
+
+<footer>
+  <p>
+    Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
+    Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a><br>
+    <span class="text-small">Můžeš volně sdílet a upravovat s uvedením autora.</span>
+  </p>
+</footer>
+
+</body>
+</html>

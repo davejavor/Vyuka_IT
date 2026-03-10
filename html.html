@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML — Kompletní přehled</title>
+  <link rel="stylesheet" href="navody-print.css">
+</head>
+<body class="theme-html">
+
+<header class="doc-header">
+  <span class="badge">HTML</span>
+  <h1>Kompletní přehled HTML</h1>
+  <p class="subtitle">HyperText Markup Language — základní stavební kámen každé webové stránky</p>
+</header>
+
+<!-- ====================================================
+     CO JE HTML
+     ==================================================== -->
+<section class="section">
+  <h2>Co je to HTML?</h2>
+  <p>HTML (<em>HyperText Markup Language</em>) je <strong>značkovací jazyk</strong> pro tvorbu webových stránek. Prohlížeč čte HTML tagy a podle nich zobrazuje obsah — tagy samotné viditelné nejsou.</p>
+
+  <div class="two-col">
+    <div>
+      <h4>HTML se kombinuje s:</h4>
+      <ul>
+        <li><strong>CSS</strong> — vzhled a styly</li>
+        <li><strong>JavaScript</strong> — interaktivita</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Vývoj HTML:</h4>
+      <ul>
+        <li>1991 — první verze</li>
+        <li>2014 — HTML5 (aktuální)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     ZÁKLADNÍ STRUKTURA
+     ==================================================== -->
+<section class="section">
+  <h2>Základní struktura dokumentu</h2>
+  <p>Každá webová stránka má tuto kostru:</p>
+
+<pre><span class="hl-tag">&lt;!DOCTYPE html&gt;</span>           <span class="hl-cmt">&lt;!-- typ dokumentu --&gt;</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"cs"</span><span class="hl-tag">&gt;</span>           <span class="hl-cmt">&lt;!-- jazyk stránky --&gt;</span>
+  <span class="hl-tag">&lt;head&gt;</span>                   <span class="hl-cmt">&lt;!-- informace o stránce --&gt;</span>
+    <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;title&gt;</span>Název stránky<span class="hl-tag">&lt;/title&gt;</span>
+  <span class="hl-tag">&lt;/head&gt;</span>
+  <span class="hl-tag">&lt;body&gt;</span>                   <span class="hl-cmt">&lt;!-- viditelný obsah --&gt;</span>
+    <span class="hl-tag">&lt;p&gt;</span>Ahoj světe!<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TEXT
+     ==================================================== -->
+<section class="section">
+  <h2>Formátování textu</h2>
+
+  <table>
+    <thead>
+      <tr><th>Tag</th><th>Popis</th><th>Příklad</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>&lt;h1&gt; – &lt;h6&gt;</code></td><td>Nadpisy (6 velikostí)</td><td><code>&lt;h1&gt;Nadpis&lt;/h1&gt;</code></td></tr>
+      <tr><td><code>&lt;p&gt;</code></td><td>Odstavec</td><td><code>&lt;p&gt;Text&lt;/p&gt;</code></td></tr>
+      <tr><td><code>&lt;strong&gt;</code></td><td>Tučný text</td><td><code>&lt;strong&gt;Důležité&lt;/strong&gt;</code></td></tr>
+      <tr><td><code>&lt;em&gt;</code></td><td>Kurzíva</td><td><code>&lt;em&gt;Zvýraznění&lt;/em&gt;</code></td></tr>
+      <tr><td><code>&lt;br&gt;</code></td><td>Zalomení řádku</td><td><code>První řádek&lt;br&gt;Druhý</code></td></tr>
+      <tr><td><code>&lt;mark&gt;</code></td><td>Zvýraznění (marker)</td><td><code>&lt;mark&gt;Text&lt;/mark&gt;</code></td></tr>
+      <tr><td><code>&lt;code&gt;</code></td><td>Zdrojový kód</td><td><code>&lt;code&gt;print()&lt;/code&gt;</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Speciální znaky (HTML entity)</h3>
+  <table>
+    <thead><tr><th>Kód</th><th>Zobrazí se</th><th>Kód</th><th>Zobrazí se</th></tr></thead>
+    <tbody>
+      <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td><code>&amp;gt;</code></td><td>&gt;</td></tr>
+      <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td><code>&amp;copy;</code></td><td>©</td></tr>
+      <tr><td><code>&amp;nbsp;</code></td><td>(nezalomitelná mezera)</td><td><code>&amp;euro;</code></td><td>€</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     ODKAZY A OBRÁZKY
+     ==================================================== -->
+<section class="section">
+  <h2>Odkazy a obrázky</h2>
+
+  <h3>Odkaz <code>&lt;a&gt;</code></h3>
+<pre><span class="hl-cmt">&lt;!-- Odkaz na jiný web --&gt;</span>
+<span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://www.google.com"</span><span class="hl-tag">&gt;</span>Google<span class="hl-tag">&lt;/a&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Otevřít v novém okně --&gt;</span>
+<span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"https://example.com"</span> <span class="hl-attr">target</span>=<span class="hl-val">"_blank"</span><span class="hl-tag">&gt;</span>Odkaz<span class="hl-tag">&lt;/a&gt;</span>
+
+<span class="hl-cmt">&lt;!-- E-mail --&gt;</span>
+<span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"mailto:info@example.com"</span><span class="hl-tag">&gt;</span>Napsat e-mail<span class="hl-tag">&lt;/a&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Odkaz na místo na stránce --&gt;</span>
+<span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"#sekce1"</span><span class="hl-tag">&gt;</span>Přejít na sekci 1<span class="hl-tag">&lt;/a&gt;</span>
+<span class="hl-tag">&lt;h2</span> <span class="hl-attr">id</span>=<span class="hl-val">"sekce1"</span><span class="hl-tag">&gt;</span>Sekce 1<span class="hl-tag">&lt;/h2&gt;</span></pre>
+
+  <h3>Obrázek <code>&lt;img&gt;</code></h3>
+<pre><span class="hl-cmt">&lt;!-- Základní obrázek --&gt;</span>
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"obrazek.jpg"</span> <span class="hl-attr">alt</span>=<span class="hl-val">"Popis obrázku"</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Se zadanými rozměry --&gt;</span>
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"foto.jpg"</span> <span class="hl-attr">alt</span>=<span class="hl-val">"Popis"</span> <span class="hl-attr">width</span>=<span class="hl-val">"300"</span> <span class="hl-attr">height</span>=<span class="hl-val">"200"</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Obrázek s popisem (sémanticky správně) --&gt;</span>
+<span class="hl-tag">&lt;figure&gt;</span>
+  <span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"foto.jpg"</span> <span class="hl-attr">alt</span>=<span class="hl-val">"Popis"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;figcaption&gt;</span>Popisek pod obrázkem<span class="hl-tag">&lt;/figcaption&gt;</span>
+<span class="hl-tag">&lt;/figure&gt;</span></pre>
+
+  <div class="tip">Atribut <code>alt</code> je povinný — zobrazí se, když se obrázek nenačte, a pomáhá čtečkám obrazovky pro nevidomé.</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     SEZNAMY
+     ==================================================== -->
+<section class="section">
+  <h2>Seznamy</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>Nečíslovaný <code>&lt;ul&gt;</code></h3>
+<pre><span class="hl-tag">&lt;ul&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Jablko<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Hruška<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Švestka<span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-tag">&lt;/ul&gt;</span></pre>
+    </div>
+    <div>
+      <h3>Číslovaný <code>&lt;ol&gt;</code></h3>
+<pre><span class="hl-tag">&lt;ol&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Krok první<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Krok druhý<span class="hl-tag">&lt;/li&gt;</span>
+  <span class="hl-tag">&lt;li&gt;</span>Krok třetí<span class="hl-tag">&lt;/li&gt;</span>
+<span class="hl-tag">&lt;/ol&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TABULKY
+     ==================================================== -->
+<section class="section">
+  <h2>Tabulky</h2>
+
+<pre><span class="hl-tag">&lt;table&gt;</span>
+  <span class="hl-tag">&lt;thead&gt;</span>                        <span class="hl-cmt">&lt;!-- hlavička tabulky --&gt;</span>
+    <span class="hl-tag">&lt;tr&gt;</span>
+      <span class="hl-tag">&lt;th&gt;</span>Záhlaví 1<span class="hl-tag">&lt;/th&gt;</span>
+      <span class="hl-tag">&lt;th&gt;</span>Záhlaví 2<span class="hl-tag">&lt;/th&gt;</span>
+    <span class="hl-tag">&lt;/tr&gt;</span>
+  <span class="hl-tag">&lt;/thead&gt;</span>
+  <span class="hl-tag">&lt;tbody&gt;</span>                        <span class="hl-cmt">&lt;!-- tělo tabulky --&gt;</span>
+    <span class="hl-tag">&lt;tr&gt;</span>
+      <span class="hl-tag">&lt;td&gt;</span>Řádek 1, Sloupec 1<span class="hl-tag">&lt;/td&gt;</span>
+      <span class="hl-tag">&lt;td&gt;</span>Řádek 1, Sloupec 2<span class="hl-tag">&lt;/td&gt;</span>
+    <span class="hl-tag">&lt;/tr&gt;</span>
+  <span class="hl-tag">&lt;/tbody&gt;</span>
+<span class="hl-tag">&lt;/table&gt;</span></pre>
+
+  <table>
+    <thead><tr><th>Tag</th><th>Funkce</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;table&gt;</code></td><td>Vytvoří tabulku</td></tr>
+      <tr><td><code>&lt;tr&gt;</code></td><td>Řádek tabulky (table row)</td></tr>
+      <tr><td><code>&lt;th&gt;</code></td><td>Záhlavní buňka (tučná, centrovaná)</td></tr>
+      <tr><td><code>&lt;td&gt;</code></td><td>Běžná datová buňka</td></tr>
+      <tr><td><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code></td><td>Sémantické části tabulky</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Sloučení buněk</h3>
+<pre><span class="hl-cmt">&lt;!-- Sloučení přes 2 sloupce --&gt;</span>
+<span class="hl-tag">&lt;td</span> <span class="hl-attr">colspan</span>=<span class="hl-val">"2"</span><span class="hl-tag">&gt;</span>Přes dva sloupce<span class="hl-tag">&lt;/td&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Sloučení přes 2 řádky --&gt;</span>
+<span class="hl-tag">&lt;td</span> <span class="hl-attr">rowspan</span>=<span class="hl-val">"2"</span><span class="hl-tag">&gt;</span>Přes dva řádky<span class="hl-tag">&lt;/td&gt;</span></pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FORMULÁŘE
+     ==================================================== -->
+<section class="section">
+  <h2>Formuláře</h2>
+
+<pre><span class="hl-tag">&lt;form</span> <span class="hl-attr">action</span>=<span class="hl-val">"/zpracovat"</span> <span class="hl-attr">method</span>=<span class="hl-val">"post"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Textové pole --&gt;</span>
+  <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"jmeno"</span><span class="hl-tag">&gt;</span>Jméno:<span class="hl-tag">&lt;/label&gt;</span>
+  <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">id</span>=<span class="hl-val">"jmeno"</span> <span class="hl-attr">name</span>=<span class="hl-val">"jmeno"</span> <span class="hl-attr">required</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Zaškrtávací pole --&gt;</span>
+  <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"checkbox"</span> <span class="hl-attr">id</span>=<span class="hl-val">"souhlas"</span> <span class="hl-attr">name</span>=<span class="hl-val">"souhlas"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"souhlas"</span><span class="hl-tag">&gt;</span>Souhlasím s podmínkami<span class="hl-tag">&lt;/label&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Rozbalovací seznam --&gt;</span>
+  <span class="hl-tag">&lt;select</span> <span class="hl-attr">id</span>=<span class="hl-val">"trida"</span> <span class="hl-attr">name</span>=<span class="hl-val">"trida"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;option</span> <span class="hl-attr">value</span>=<span class="hl-val">"7A"</span><span class="hl-tag">&gt;</span>7.A<span class="hl-tag">&lt;/option&gt;</span>
+    <span class="hl-tag">&lt;option</span> <span class="hl-attr">value</span>=<span class="hl-val">"8A"</span><span class="hl-tag">&gt;</span>8.A<span class="hl-tag">&lt;/option&gt;</span>
+  <span class="hl-tag">&lt;/select&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Tlačítko odeslání --&gt;</span>
+  <span class="hl-tag">&lt;button</span> <span class="hl-attr">type</span>=<span class="hl-val">"submit"</span><span class="hl-tag">&gt;</span>Odeslat<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-tag">&lt;/form&gt;</span></pre>
+
+  <h3>Typy vstupních polí (<code>type=</code>)</h3>
+  <table>
+    <thead><tr><th>Hodnota</th><th>Popis</th></tr></thead>
+    <tbody>
+      <tr><td><code>text</code></td><td>Běžný text</td></tr>
+      <tr><td><code>email</code></td><td>E-mailová adresa (ověří formát)</td></tr>
+      <tr><td><code>password</code></td><td>Heslo (skryté znaky)</td></tr>
+      <tr><td><code>number</code></td><td>Číslo</td></tr>
+      <tr><td><code>checkbox</code></td><td>Zaškrtávací políčko</td></tr>
+      <tr><td><code>radio</code></td><td>Přepínač (jen jedna možnost)</td></tr>
+      <tr><td><code>date</code></td><td>Výběr data</td></tr>
+      <tr><td><code>file</code></td><td>Nahrání souboru</td></tr>
+      <tr><td><code>color</code></td><td>Výběr barvy (HTML5)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     SÉMANTICKÉ TAGY
+     ==================================================== -->
+<section class="section">
+  <h2>Sémantické tagy HTML5</h2>
+  <p>Sémantické tagy říkají prohlížeči a vyhledávačům, <em>co</em> obsah znamená — nejen jak vypadá.</p>
+
+<pre><span class="hl-tag">&lt;header&gt;</span>Hlavička stránky / sekce<span class="hl-tag">&lt;/header&gt;</span>
+<span class="hl-tag">&lt;nav&gt;</span>Navigační menu<span class="hl-tag">&lt;/nav&gt;</span>
+<span class="hl-tag">&lt;main&gt;</span>Hlavní obsah stránky<span class="hl-tag">&lt;/main&gt;</span>
+<span class="hl-tag">&lt;article&gt;</span>Samostatný článek<span class="hl-tag">&lt;/article&gt;</span>
+<span class="hl-tag">&lt;section&gt;</span>Tematická sekce<span class="hl-tag">&lt;/section&gt;</span>
+<span class="hl-tag">&lt;aside&gt;</span>Boční panel / poznámka<span class="hl-tag">&lt;/aside&gt;</span>
+<span class="hl-tag">&lt;footer&gt;</span>Patička stránky<span class="hl-tag">&lt;/footer&gt;</span></pre>
+
+  <div class="tip">Místo samých <code>&lt;div&gt;</code> používej sémantické tagy — kód bude přehlednější a lépe čitelný pro vyhledávače (SEO).</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     MULTIMÉDIA
+     ==================================================== -->
+<section class="section">
+  <h2>Vkládání médií</h2>
+
+<pre><span class="hl-cmt">&lt;!-- Video --&gt;</span>
+<span class="hl-tag">&lt;video</span> <span class="hl-attr">controls</span> <span class="hl-attr">width</span>=<span class="hl-val">"640"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;source</span> <span class="hl-attr">src</span>=<span class="hl-val">"video.mp4"</span> <span class="hl-attr">type</span>=<span class="hl-val">"video/mp4"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;/video&gt;</span>
+
+<span class="hl-cmt">&lt;!-- YouTube video --&gt;</span>
+<span class="hl-tag">&lt;iframe</span> <span class="hl-attr">width</span>=<span class="hl-val">"560"</span> <span class="hl-attr">height</span>=<span class="hl-val">"315"</span>
+  <span class="hl-attr">src</span>=<span class="hl-val">"https://www.youtube.com/embed/ID_VIDEA"</span>
+  <span class="hl-attr">allowfullscreen</span><span class="hl-tag">&gt;&lt;/iframe&gt;</span></pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     TIPY
+     ==================================================== -->
+<section class="section">
+  <h2>Tipy pro správný kód</h2>
+  <ol>
+    <li><strong>Odsazování</strong> — dvě nebo čtyři mezery, důsledně</li>
+    <li><strong>Správné uzavírání tagů</strong> — otevřené tagy vždy uzavři ve správném pořadí</li>
+    <li><strong>Malá písmena</strong> — HTML není case-sensitive, ale malá písmena jsou zvykem</li>
+    <li><strong>Uvozovky u atributů</strong> — hodnoty vždy v uvozovkách: <code>href="..."</code></li>
+    <li><strong>Validace</strong> — ověř kód na <code>validator.w3.org</code></li>
+  </ol>
+
+  <h3>Náměty na projekty</h3>
+  <ul>
+    <li>Osobní webová stránka (koníčky, zájmy)</li>
+    <li>Stránka o oblíbeném filmu / knize / hře</li>
+    <li>Třídní web s rozvrhem hodin v tabulce</li>
+    <li>Průvodce místem (město, škola)</li>
+    <li>Jednoduchý blog s více stránkami</li>
+  </ul>
+</section>
+
+<footer>
+  <p>
+    Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
+    Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a><br>
+    <span class="text-small">Můžeš volně sdílet a upravovat s uvedením autora.</span>
+  </p>
+</footer>
+
+</body>
+</html>

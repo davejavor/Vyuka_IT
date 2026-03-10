@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub — Tvorba webových stránek</title>
+  <link rel="stylesheet" href="navody-print.css">
+</head>
+<body class="theme-github">
+
+<header class="doc-header">
+  <span class="badge">GitHub</span>
+  <h1>Tvorba webových stránek pomocí&nbsp;GitHubu</h1>
+  <p class="subtitle">Krok za krokem: od registrace po živý web na internetu</p>
+</header>
+
+<!-- ====================================================
+     FÁZE 1 — Účet
+     ==================================================== -->
+<section class="section">
+  <h2>Fáze 1 — Příprava účtu</h2>
+
+  <h3>Krok 1: Vytvoření GitHub účtu</h3>
+  <div class="step-row"><span class="step-num">1</span><p>Jdi na <code>github.com</code> a klikni <strong>Sign up</strong>.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Zadej e-mail, heslo a uživatelské jméno.</p></div>
+  <div class="step-row"><span class="step-num">3</span><p>Ověř e-mail kódem, který ti přijde do schránky.</p></div>
+
+  <div class="tip">Zvol si <strong>smysluplné uživatelské jméno</strong> — bude součástí adresy tvého webu! Například <code>jan-novak</code>.</div>
+
+  <h3>Krok 2: Speciální repozitář pro web</h3>
+  <div class="step-row"><span class="step-num">1</span><p>Po přihlášení klikni na <strong>+</strong> v pravém horním rohu a vyber <strong>New repository</strong>.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Název repozitáře musí být <strong>přesně</strong> v tomto formátu:</p></div>
+
+  <pre><span class="hl-val">tvojeuzivatelskejmeno</span>.github.io</pre>
+
+  <div class="warning">Tento přesný formát aktivuje GitHub Pages. Každé písmenko je důležité!</div>
+
+  <div class="step-row"><span class="step-num">3</span><p>Nastav repozitář na <strong>Public</strong> (veřejný) a zaškrtni <em>Add a README file</em>.</p></div>
+  <div class="step-row"><span class="step-num">4</span><p>Klikni <strong>Create repository</strong>.</p></div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FÁZE 2 — Soubory
+     ==================================================== -->
+<section class="section">
+  <h2>Fáze 2 — Vytvoření souborů webu</h2>
+
+  <h3>Krok 3a: Soubor <code>index.html</code></h3>
+  <div class="step-row"><span class="step-num">1</span><p>V repozitáři klikni <strong>Add file → Create new file</strong>.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Jako název souboru napiš <code>index.html</code>.</p></div>
+  <div class="step-row"><span class="step-num">3</span><p>Vlož tento základní HTML kód:</p></div>
+
+<pre><span class="hl-cmt">&lt;!-- Základní struktura stránky --&gt;</span>
+<span class="hl-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"cs"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;head&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"viewport"</span> <span class="hl-attr">content</span>=<span class="hl-val">"width=device-width, initial-scale=1.0"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;title&gt;</span>Můj první web<span class="hl-tag">&lt;/title&gt;</span>
+  <span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"stylesheet"</span> <span class="hl-attr">href</span>=<span class="hl-val">"style.css"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span>
+<span class="hl-tag">&lt;body&gt;</span>
+  <span class="hl-tag">&lt;h1&gt;</span>Ahoj světe!<span class="hl-tag">&lt;/h1&gt;</span>
+  <span class="hl-tag">&lt;p&gt;</span>Můj první web je online.<span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></pre>
+
+  <div class="step-row"><span class="step-num">4</span><p>Níže na stránce napiš popis změny (tzv. <em>commit zprávu</em>): <code>Přidán základní HTML soubor</code> a klikni <strong>Commit new file</strong>.</p></div>
+
+  <h3>Krok 3b: Soubor <code>style.css</code></h3>
+  <div class="step-row"><span class="step-num">1</span><p>Znovu <strong>Add file → Create new file</strong>, tentokrát název <code>style.css</code>.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Vlož základní styly:</p></div>
+
+<pre><span class="hl-cmt">/* Styly pro celou stránku */</span>
+<span class="hl-sel">*</span> {
+  <span class="hl-prop">margin</span>: <span class="hl-val">0</span>;
+  <span class="hl-prop">padding</span>: <span class="hl-val">0</span>;
+  <span class="hl-prop">box-sizing</span>: <span class="hl-val">border-box</span>;
+}
+
+<span class="hl-sel">body</span> {
+  <span class="hl-prop">font-family</span>: <span class="hl-val">Arial, sans-serif</span>;
+  <span class="hl-prop">max-width</span>: <span class="hl-val">800px</span>;
+  <span class="hl-prop">margin</span>: <span class="hl-val">2rem auto</span>;
+  <span class="hl-prop">padding</span>: <span class="hl-val">0 1rem</span>;
+  <span class="hl-prop">background</span>: <span class="hl-val">#f4f4f4</span>;
+}</pre>
+
+  <div class="step-row"><span class="step-num">3</span><p>Commit zpráva: <code>Přidán základní CSS styl</code> → <strong>Commit new file</strong>.</p></div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FÁZE 3 — Publikování
+     ==================================================== -->
+<section class="section">
+  <h2>Fáze 3 — Publikování webu</h2>
+
+  <h3>Krok 4: Aktivace GitHub Pages</h3>
+  <div class="step-row"><span class="step-num">1</span><p>V repozitáři klikni na <strong>Settings</strong> (Nastavení).</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>V levém menu najdi sekci <strong>Pages</strong>.</p></div>
+  <div class="step-row"><span class="step-num">3</span><p>U <em>Source</em> vyber <strong>Deploy from a branch</strong>.</p></div>
+  <div class="step-row"><span class="step-num">4</span><p>Vyber větev <strong>main</strong> a složku <strong>/ (root)</strong>, pak klikni <strong>Save</strong>.</p></div>
+
+  <h3>Krok 5: Zobrazení webu</h3>
+  <div class="step-row"><span class="step-num">1</span><p>Počkej <strong>1–3 minuty</strong> na zpracování.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Tvůj web bude dostupný na adrese:</p></div>
+
+  <pre>https://<span class="hl-val">tvojeuzivatelskejmeno</span>.github.io</pre>
+
+  <div class="tip">Gratulujeme! Tvůj web je živý na internetu. 🎉</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FÁZE 4 — Úpravy
+     ==================================================== -->
+<section class="section">
+  <h2>Fáze 4 — Úpravy a rozšiřování</h2>
+
+  <h3>Jak upravovat web</h3>
+  <div class="step-row"><span class="step-num">1</span><p>Jdi do repozitáře a klikni na soubor, který chceš upravit (např. <code>index.html</code>).</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Klikni na ikonu <strong>tužky</strong> (Edit this file).</p></div>
+  <div class="step-row"><span class="step-num">3</span><p>Proveď změny, napiš popis (commit zprávu) a klikni <strong>Commit changes</strong>.</p></div>
+  <div class="step-row"><span class="step-num">4</span><p>Počkej minutu, obnov stránku — změny jsou viditelné.</p></div>
+
+  <h3>Přidávání obrázků</h3>
+  <div class="step-row"><span class="step-num">1</span><p>Vytvoř složku <code>images/</code>: <em>Add file → Create new file</em>, napiš název <code>images/placeholder.txt</code>.</p></div>
+  <div class="step-row"><span class="step-num">2</span><p>Nahraj obrázky přes <strong>Add file → Upload files</strong>.</p></div>
+  <div class="step-row"><span class="step-num">3</span><p>V HTML odkazuj na obrázek takto:</p></div>
+  <pre><span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"images/muj-obrazek.jpg"</span> <span class="hl-attr">alt</span>=<span class="hl-val">"Popis obrázku"</span><span class="hl-tag">&gt;</span></pre>
+
+  <h3>Více stránek</h3>
+  <p>Vytvoř nové soubory (<code>o-mne.html</code>, <code>galerie.html</code>, …) a propoj je pomocí odkazů:</p>
+  <pre><span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"o-mne.html"</span><span class="hl-tag">&gt;</span>O mně<span class="hl-tag">&lt;/a&gt;</span></pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     Řešení problémů
+     ==================================================== -->
+<section class="section">
+  <h2>Řešení častých problémů</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Problém</th>
+        <th>Řešení</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Web se nezobrazuje</td>
+        <td>Zkontroluj název repozitáře — musí být <code>uzivatel.github.io</code>. Zkontroluj aktivaci GitHub Pages v&nbsp;Settings. Počkej 5–10 minut.</td>
+      </tr>
+      <tr>
+        <td>Změny se neprojevují</td>
+        <td>Počkej 1–2 minuty po commitu. Tvrdé obnovení: <code>Ctrl+F5</code> (Windows) nebo <code>Cmd+Shift+R</code> (Mac).</td>
+      </tr>
+      <tr>
+        <td>Chyby v kódu</td>
+        <td>Otevři nástroje pro vývojáře v prohlížeči klávesou <code>F12</code> a podívej se na záložku <em>Console</em>.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     Kam dál
+     ==================================================== -->
+<section class="section">
+  <h2>Kam dál?</h2>
+  <ul>
+    <li><strong>Vlastní doména</strong> — propojení domény (např. <code>mojestranka.cz</code>) s GitHub Pages</li>
+    <li><strong>JavaScript</strong> — přidání interaktivity (kalkulačky, hry, animace)</li>
+    <li><strong>Responsive design</strong> — web fungující správně i na mobilu</li>
+    <li><strong>Kolaborace</strong> — společné projekty pomocí Pull Requests</li>
+    <li><strong>SEO</strong> — optimalizace pro vyhledávače</li>
+  </ul>
+</section>
+
+<footer>
+  <p>
+    Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
+    Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a><br>
+    <span class="text-small">Můžeš volně sdílet a upravovat s uvedením autora.</span>
+  </p>
+</footer>
+
+</body>
+</html>
