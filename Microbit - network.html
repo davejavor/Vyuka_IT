@@ -95,23 +95,11 @@
       .glossary  { grid-template-columns: 1fr; }
     }
   </style>
+  <script src="components.js"></script>
 </head>
 <body>
 
-<!-- NAVIGACE -->
-<nav class="site-nav no-print">
-  <a class="nav-logo" href="index.html">📚 IT Návody</a>
-  <input type="checkbox" id="nav-toggle" class="nav-toggle">
-  <label for="nav-toggle" class="nav-hamburger">&#9776;</label>
-  <ul>
-    <li><a href="index.html">Hlavní stránka</a></li>
-    <li><a href="html.html">HTML</a></li>
-    <li><a href="css.html">CSS</a></li>
-    <li><a href="github.html">GitHub</a></li>
-    <li><a href="logicka_hradla.html" class="active">Logická hradla</a></li>
-  </ul>
-  <button class="btn-print" onclick="window.print()">🖨 Tisk</button>
-</nav>
+<site-nav></site-nav>
 
 <!-- HLAVIČKA -->
 <header class="doc-header">
