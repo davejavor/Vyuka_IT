@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahák: IP adresy a DNS</title>
+<link rel="stylesheet" href="https://raw.githubusercontent.com/davejavor/Vyuka_IT/main/navody-print.css">
+</head>
+<body>
+
+<div class="doc-header">
+  <span class="badge">IT klub</span>
+  <h1>IP adresy &amp; DNS</h1>
+  <p class="subtitle">Jak funguje internet — tahák pro průzkum &nbsp;·&nbsp; Navazuje na: Rádiová síť micro:bit</p>
+</div>
+
+<div class="two-col">
+
+  <!-- KLÍČOVÉ POJMY -->
+  <section class="section">
+    <h2>Klíčové pojmy</h2>
+    <table>
+      <thead>
+        <tr><th>Pojem</th><th>Co to je</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>IP adresa</code></td><td>Jednoznačná adresa zařízení v síti. Jako číslo domu.</td></tr>
+        <tr><td><code>IPv4</code></td><td>4 čísla 0–255, např. <code>142.250.185.46</code></td></tr>
+        <tr><td><code>IPv6</code></td><td>Novější formát: <code>2001:db8::1</code> (víc adres)</td></tr>
+        <tr><td><code>DNS</code></td><td>Přeloží doménu → IP. Jako telefonní seznam.</td></tr>
+        <tr><td><code>Paket</code></td><td>Malý kousek dat s adresou odesílatele + příjemce.</td></tr>
+        <tr><td><code>Router</code></td><td>Zařízení, které pakety přeposílá správným směrem.</td></tr>
+        <tr><td><code>TTL</code></td><td>Time To Live — kolik hopů ještě paket smí projít.</td></tr>
+        <tr><td><code>Traceroute</code></td><td>Zobrazí cestu paketu hop po hopu přes routery.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- DNS ZÁZNAMY -->
+  <section class="section">
+    <h2>Typy DNS záznamů</h2>
+    <table>
+      <thead>
+        <tr><th>Záznam</th><th>Co dělá</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>A</code></td><td>doména → IPv4 adresa</td></tr>
+        <tr><td><code>AAAA</code></td><td>doména → IPv6 adresa</td></tr>
+        <tr><td><code>MX</code></td><td>doména → mailový server</td></tr>
+        <tr><td><code>CNAME</code></td><td>alias (<code>www</code> → <code>example.com</code>)</td></tr>
+        <tr><td><code>TXT</code></td><td>libovolný text (ověření, SPF…)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Jak DNS přeloží doménu</h3>
+    <ol class="steps">
+      <li>Zadáš <code>google.com</code> do prohlížeče</li>
+      <li>DNS resolver (škola / ISP) se zeptá Root serveru</li>
+      <li>Root odkáže na <code>.com</code> server</li>
+      <li><code>.com</code> server odkáže na Google NS</li>
+      <li>Google NS vrátí IP: <code>142.250.…</code></li>
+      <li>Výsledek se uloží do <strong>cache</strong> na dobu TTL</li>
+    </ol>
+  </section>
+
+</div>
+
+<!-- NÁSTROJE -->
+<section class="section">
+  <h2>Nástroje pro průzkum (bez instalace, fungují na Chromebooku)</h2>
+  <table>
+    <thead>
+      <tr><th>Úroveň</th><th>Nástroj</th><th>K čemu</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>základní</td>
+        <td><a href="https://www.whatismyip.com" target="_blank">whatismyip.com</a></td>
+        <td>Zjistí tvoji veřejnou IP a její geolokaci</td>
+      </tr>
+      <tr>
+        <td>základní</td>
+        <td><a href="https://dnschecker.org" target="_blank">dnschecker.org</a></td>
+        <td>DNS dotazy z různých míst světa najednou</td>
+      </tr>
+      <tr>
+        <td>rozšíření</td>
+        <td><a href="https://network-tools.com" target="_blank">network-tools.com</a></td>
+        <td>Ping, traceroute, whois</td>
+      </tr>
+      <tr>
+        <td>rozšíření</td>
+        <td><a href="https://www.ipaddressguide.com/traceroute" target="_blank">ipaddressguide.com/traceroute</a></td>
+        <td>Vizuální traceroute s mapou</td>
+      </tr>
+      <tr>
+        <td>výzva</td>
+        <td><a href="https://mxtoolbox.com" target="_blank">mxtoolbox.com</a></td>
+        <td>MX, SPF, DKIM záznamy — kdo spravuje email</td>
+      </tr>
+      <tr>
+        <td>výzva</td>
+        <td><a href="https://www.shodan.io" target="_blank">shodan.io</a></td>
+        <td>Co je na IP adrese vidět z internetu</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <strong>Chromebook terminál:</strong> <code>Ctrl+Alt+T</code> → otevře crosh →
+    zkus <code>ping google.com</code>. Pozor: <code>nslookup</code> v crosh nefunguje — použij dnschecker.org.
+  </div>
+</section>
+
+<!-- ÚKOLY -->
+<section class="section">
+  <h2>Úkoly k průzkumu</h2>
+  <table>
+    <thead>
+      <tr><th>Úroveň</th><th>Úkol</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>základní</td>
+        <td>Zjisti svoji veřejnou IP. Je stejná jako spolužákova? Proč?</td>
+      </tr>
+      <tr>
+        <td>základní</td>
+        <td>Najdi IP adresu <code>archa-os.cz</code> přes dnschecker.org</td>
+      </tr>
+      <tr>
+        <td>rozšíření</td>
+        <td>Traceroute na <code>google.com</code> — kolik hopů? Přes jaké země projde paket?</td>
+      </tr>
+      <tr>
+        <td>rozšíření</td>
+        <td>Porovnej DNS záznam školy z ČR a z USA — jsou stejné?</td>
+      </tr>
+      <tr>
+        <td>výzva</td>
+        <td>Zjisti MX záznam školy přes mxtoolbox.com — kdo provozuje školní email?</td>
+      </tr>
+      <tr>
+        <td>výzva</td>
+        <td>Zkus shodan.io — co je vidět na veřejné IP adrese školy?</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- DISKUSNÍ OTÁZKY -->
+<section class="section">
+  <h2>Otázky na závěr</h2>
+  <ol>
+    <li>Co by se stalo, kdyby přestaly fungovat všechny DNS servery najednou? (Hint: znáš IP adresy nazpaměť?)</li>
+    <li>Proč mají všichni ve třídě stejnou veřejnou IP, ale různé vnitřní adresy? Jak to funguje?</li>
+    <li>Micro:bit posílal čísla přes rádio — čím se liší od paketu na internetu?</li>
+    <li>TTL u DNS záznamu je 3600 s. Škola změní IP — za jak dlouho to uvidí celý svět?</li>
+  </ol>
+</section>
+
+<footer>
+  Montessori ZŠ Archa &nbsp;·&nbsp; IT klub &nbsp;·&nbsp;
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>
+</footer>
+
+</body>
+</html>
