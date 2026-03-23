@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro:bit Net | IT Návody</title>
+  <link rel="stylesheet" href="navody-print.css">
+  <style>
+    /* === Barvy specifické pro micro:bit / síť === */
+    :root {
+      --color-server:        #e8f4fd;
+      --color-server-border: #2980b9;
+      --color-client:        #fef9e7;
+      --color-client-border: #f39c12;
+    }
+
+    /* === Varianty sekce (server / klient) === */
+    .section-server { background: var(--color-server); border-color: var(--color-server-border); }
+    .section-client { background: var(--color-client); border-color: var(--color-client-border); }
+
+    /* === Badge varianty === */
+    .badge-server { background: var(--color-server-border); }
+    .badge-client { background: #e67e22; }
+
+    /* === Syntax highlighting — JavaScript/Python === */
+    .hl-fn  { color: #b392f0; }
+    .hl-str { color: #9ecbff; }
+    .hl-num { color: #e16a76; }
+    .hl-var { color: #9e702c; }
+    .hl-kw  { color: #79b8ff; font-weight: bold; }
+
+    /* === Tabulka — první sloupec tučně === */
+    table.role-table th:first-child,
+    table.role-table td:first-child { font-weight: bold; width: 120px; }
+
+    ol.steps > li {
+      padding: 14px 14px 14px 54px;
+      margin: 10px 0;
+      background: var(--color-bg-section);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+    }
+    ol.steps > li::before {
+      left: 12px; top: 12px;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    ol.steps > li h3 { margin-top: 0; }
+
+    /* === Síťové schéma === */
+    .network-diagram {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      flex-wrap: wrap; padding: 16px; background: #f0f4f8;
+      border: 1px dashed var(--color-border); border-radius: var(--border-radius);
+      margin: 12px 0; font-size: 0.85em;
+    }
+    .node {
+      padding: 8px 12px; border-radius: var(--border-radius);
+      font-weight: bold; text-align: center; min-width: 80px;
+    }
+    .node-server { background: #2980b9; color: white; }
+    .node-client { background: #e67e22; color: white; }
+    .arrow { font-size: 1.3rem; color: var(--color-light); }
+
+    /* === Diferenciace === */
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+    .diff-card { border-radius: var(--border-radius); padding: 12px; border: 2px solid; break-inside: avoid; }
+    .diff-basic     { border-color: #27ae60; background: #f0faf4; }
+    .diff-extend    { border-color: #2980b9; background: #eef6fd; }
+    .diff-challenge { border-color: #8e44ad; background: #f5f0fb; }
+    .diff-label {
+      display: inline-block; font-size: 0.7rem; font-weight: bold;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; color: white;
+    }
+    .diff-basic .diff-label     { background: #27ae60; }
+    .diff-extend .diff-label    { background: #2980b9; }
+    .diff-challenge .diff-label { background: #8e44ad; }
+    .diff-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
+    .diff-card ul { padding-left: 16px; font-size: 0.9rem; }
+    .diff-card ul li { margin-bottom: 4px; }
+
+    /* === Pojmový přehled === */
+    .glossary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
+    .gloss-item {
+      background: var(--color-bg-section); border: 1px solid var(--color-border);
+      border-radius: var(--border-radius); padding: 8px 12px; break-inside: avoid;
+    }
+    .gloss-item code { display: block; margin-bottom: 4px; }
+    .gloss-item small { color: var(--color-light); }
+
+    /* === Responzivita === */
+    @media (max-width: 600px) {
+      .diff-grid { grid-template-columns: 1fr; }
+      .glossary  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGACE -->
+<nav class="site-nav no-print">
+  <a class="nav-logo" href="index.html">📚 IT Návody</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-hamburger">&#9776;</label>
+  <ul>
+    <li><a href="index.html">Hlavní stránka</a></li>
+    <li><a href="html.html">HTML</a></li>
+    <li><a href="css.html">CSS</a></li>
+    <li><a href="github.html">GitHub</a></li>
+    <li><a href="logicka_hradla.html" class="active">Logická hradla</a></li>
+  </ul>
+  <button class="btn-print" onclick="window.print()">🖨 Tisk</button>
+</nav>
+
+<!-- HLAVIČKA -->
+<header class="doc-header">
+  <span class="badge">micro:bit · Radio</span>
+  <h1>Rádiová síť: Net</h1>
+  <p class="subtitle">Jeden micro:bit sbírá data — adresování, kolize a ztrátu paketů</p>
+</header>
+
+<!-- OBSAH -->
+<nav class="no-print" aria-label="Obsah">
+  <div class="section" style="padding: 10px 16px;">
+    <strong>Obsah:</strong>
+    <a href="#jak-funguje">Jak to funguje</a> ·
+    <a href="#pojmy">Klíčové pojmy</a> ·
+    <a href="#server">Server (přijímač)</a> ·
+    <a href="#klient">Klient (odesílač)</a> ·
+    <a href="#problemy">Problémy v síti</a> ·
+    <a href="#zadani">Zadání</a>
+  </div>
+</nav>
+
+<!-- ===========================
+     JAK TO FUNGUJE
+     =========================== -->
+<section id="jak-funguje" class="section">
+  <h2>Jak to funguje</h2>
+  <p>
+    Micro:bity mohou komunikovat přes rádiový signál (2,4 GHz). Jeden micro:bit bude <strong>server</strong> (přijímá a zobrazuje data),
+    ostatní budou <strong>klienti</strong> (měří a posílají).
+  </p>
+
+  <div class="network-diagram">
+    <div class="node node-client">Klient A<br><small>měří, posílá</small></div>
+    <div class="arrow">→</div>
+    <div class="node node-server">SERVER<br><small>přijímá, zobrazuje</small></div>
+    <div class="arrow">←</div>
+    <div class="node node-client">Klient B<br><small>měří, posílá</small></div>
+    <div class="arrow" style="transform:rotate(90deg); margin-top:-20px;">←</div>
+  </div>
+  <div class="network-diagram" style="margin-top:-8px; padding-top:0; border-top:none;">
+    <div class="node node-client">Klient C<br><small>měří, posílá</small></div>
+  </div>
+
+</section>
+
+<!-- ===========================
+     KLÍČOVÉ POJMY
+     =========================== -->
+<section id="pojmy" class="section">
+  <h2>Klíčové pojmy</h2>
+  <div class="glossary">
+    <div class="gloss-item">
+      <code>radio.setGroup(číslo)</code>
+      <small>Nastaví „kanál" sítě (0–255). Všechny micro:bity ve skupině musí mít stejné číslo.</small>
+    </div>
+    <div class="gloss-item">
+      <code>radio.sendNumber(n)</code>
+      <small>Pošle číslo všem micro:bitům na stejné skupině (broadcast).</small>
+    </div>
+    <div class="gloss-item">
+      <code>radio.onReceivedNumber(fn)</code>
+      <small>Handler — spustí se, když přijde číslo. Parametr <code>receivedNumber</code>.</small>
+    </div>
+    <div class="gloss-item">
+      <code>radio.sendValue(klíč, hodnota)</code>
+      <small>Pošle dvojici text+číslo. Server pozná, <em>co</em> data znamenají.</small>
+    </div>
+    <div class="gloss-item">
+      <code>radio.setTransmitPower(1–7)</code>
+      <small>Síla signálu. Nižší = menší dosah, méně kolizí.</small>
+    </div>
+    <div class="gloss-item">
+      <code>serial number</code>
+      <small>Unikátní číslo každého micro:bitu — lze použít jako „adresu" odesílatele.</small>
+    </div>
+    <div class="gloss-item">
+      <strong>Kolize</strong>
+      <small>Dva klienti pošlou zprávu ve stejný okamžik → jeden paket se ztratí.</small>
+    </div>
+    <div class="gloss-item">
+      <strong>Ztráta paketu</strong>
+      <small>Zpráva nedorazí (rušení, vzdálenost). Základní radio ji nepošle znovu automaticky.</small>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===========================
+     SERVER — KÓD
+     =========================== -->
+<section id="server" class="section section-server">
+  <h2>SERVER — přijímač dat</h2>
+  <p>Server naslouchá a zobrazuje přijatá čísla na displeji.</p>
+
+  <h3>Blokový kód (MakeCode)</h3>
+
+  <ol class="steps">
+    <li>
+      <h3>Nastav skupinu</h3>
+      <p>Blok <code>při spuštění</code> → sekce <strong>Rádio</strong> → <strong>nastavit skupinu radia na</strong> <code>1</code></p>
+      <p>Na displeji zobraz <code>S1</code> (server), ať víš, které zařízení je server.</p>
+    </li>
+    <li>
+      <h3>Přijmi číslo</h3>
+      <p>Přidej blok <strong>při přijetí čísla přes rádio</strong>. Parametr se jmenuje <code>recivedNum</code>.</p>
+      <p>Uvnitř zobraz přijaté číslo: <strong>zobrazit číslo</strong> → <code>recivedNum</code></p>
+    </li>
+    <li>
+      <h3>(Rozšíření) Zobraz i sílu signálu</h3>
+      <p>Ve stejném handleru přidej: <strong>zobrazit číslo</strong> → <code>síla signálu radia</code></p>
+    </li>
+  </ol>
+
+  <h3>JavaScript / Python ekvivalent</h3>
+  <pre><code><span class="hl-fn">radio</span>.<span class="hl-fn">setGroup</span>(<span class="hl-num">1</span>)           <span class="hl-cmt">// při spuštění</span>
+<span class="hl-fn">basic</span>.<span class="hl-fn">showString</span>(<span class="hl-str">"S"</span>)
+
+<span class="hl-fn">radio</span>.<span class="hl-fn">onReceivedNumber</span>(<span class="hl-kw">function</span>(<span class="hl-var">receivedNumber</span>) {
+    <span class="hl-fn">basic</span>.<span class="hl-fn">showNumber</span>(<span class="hl-var">receivedNumber</span>)
+})</code></pre>
+
+  <details>
+    <summary> Rozšíření: přijímej hodnoty s klíčem (sendValue)</summary>
+    <pre><code><span class="hl-fn">radio</span>.<span class="hl-fn">onReceivedValue</span>(<span class="hl-kw">function</span>(<span class="hl-var">name</span>, <span class="hl-var">value</span>) {
+    <span class="hl-fn">basic</span>.<span class="hl-fn">showString</span>(<span class="hl-var">name</span>)
+    <span class="hl-fn">basic</span>.<span class="hl-fn">showNumber</span>(<span class="hl-var">value</span>)
+})</code></pre>
+    <p>Server teď zobrazí např. <code>T</code> a pak číslo teploty — víš, co data znamenají.</p>
+  </details>
+</section>
+
+<!-- ===========================
+     KLIENT — KÓD
+     =========================== -->
+<section id="klient" class="section section-client">
+  <h2>📡 KLIENT — odesílač dat</h2>
+  <p>Klient měří senzorem a pravidelně posílá data na server.</p>
+
+  <ol class="steps">
+    <li>
+      <h3>Nastav skupinu (stejnou jako server!)</h3>
+      <p>Blok <code>při spuštění</code> → <strong>nastavit skupinu radia na</strong> <code>1</code></p>
+      <p>Zobraz na displeji písmeno nebo číslo, ať víš které zařízení je které.</p>
+    </li>
+    <li>
+      <h3>Posílej opakovaně</h3>
+      <p>Blok <strong>opakovat stále</strong> → přidej <strong>odeslat číslo</strong> → <code>teplota (°C)</code></p>
+      <p>Přidej pauzu: <strong>čekat</strong> <code>2000</code> ms (2 sekundy)</p>
+      <div class="tip">
+        <strong>Proč pauza?</strong> Co se stane, když tam pauza nebude?
+      </div>
+    </li>
+    <li>
+      <h3>(Rozšíření) Pošli s klíčem</h3>
+      <p>Místo <code>odeslat číslo</code> použij <strong>odeslat hodnotu</strong> <code>"teplota"</code> = <code>teplota (°C)</code></p>
+    </li>
+  </ol>
+
+  <h3>JavaScript ekvivalent</h3>
+  <pre><code><span class="hl-fn">radio</span>.<span class="hl-fn">setGroup</span>(<span class="hl-num">1</span>)
+<span class="hl-fn">basic</span>.<span class="hl-fn">showString</span>(<span class="hl-str">"A"</span>)    <span class="hl-cmt">// identifikátor tohoto klienta</span>
+
+<span class="hl-fn">basic</span>.<span class="hl-fn">forever</span>(<span class="hl-kw">function</span>() {
+    <span class="hl-kw">let</span> <span class="hl-var">teplota</span> = <span class="hl-fn">input</span>.<span class="hl-fn">temperature</span>()
+    <span class="hl-fn">radio</span>.<span class="hl-fn">sendNumber</span>(<span class="hl-var">teplota</span>)   <span class="hl-cmt">// nebo sendValue("t", teplota)</span>
+    <span class="hl-fn">basic</span>.<span class="hl-fn">pause</span>(<span class="hl-num">2000</span>)
+})</code></pre>
+
+  <table class="role-table" style="margin-top:12px;">
+    <thead><tr><th>Senzor v MakeCode</th><th>Blok</th><th>Poznámka</th></tr></thead>
+    <tbody>
+      <tr><td>Teplota</td><td><code>teplota (°C)</code></td><td>Měří CPU micro:bitu (~+5°C od okolí)</td></tr>
+      <tr><td>Světlo</td><td><code>úroveň světla</code></td><td>Využívá LED matici jako senzor</td></tr>
+      <tr><td>Akcelerometr</td><td><code>zrychlení (mg) x/y/z</code></td><td>Detekuje pohyb a náklon</td></tr>
+      <tr><td>Tlačítka A/B</td><td><code>tlačítko A stisknuto</code></td><td>0 nebo 1 — digitální vstup</td></tr>
+      <tr><td>Kompas</td><td><code>směr kompasu (°)</code></td><td>Potřebuje kalibraci</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===========================
+     DIFERENCIOVANÉ ZADÁNÍ
+     =========================== -->
+<section id="zadani" class="section">
+  <h2> Zadání</h2>
+  <p>Vyber si úroveň podle toho, co ti teď připadá zvládnutelné.</p>
+
+  <div class="diff-grid">
+    <div class="diff-card diff-basic">
+      <span class="diff-label">Základní</span>
+      <h3>Funkční síť</h3>
+      <ul>
+        <li>Server přijímá a zobrazuje čísla od min. 2 klientů</li>
+        <li>Klienti posílají teplotu každé 2 s</li>
+        <li>Správně nastavená skupina (neplete se s ostatními)</li>
+        <li>Na serveru vidím, že přicházejí data</li>
+      </ul>
+      <div class="tip" style="margin-top:8px; font-size:0.85rem;">
+        Hotovo? Zkus záměrně způsobit kolizi — odstraň pauzu u obou klientů.
+      </div>
+    </div>
+    <div class="diff-card diff-extend">
+      <span class="diff-label">Rozšíření</span>
+      <h3>Identifikace klientů</h3>
+      <ul>
+        <li>Použij <code>sendValue</code> místo <code>sendNumber</code></li>
+        <li>Každý klient posílá i své ID (písmeno nebo číslo)</li>
+        <li>Server zobrazí ID a pak hodnotu</li>
+        <li>Přidej druhý senzor (světlo nebo akcelerometr)</li>
+        <li>Zaznamenej, kolik zpráv za minutu dorazí</li>
+      </ul>
+    </div>
+    <div class="diff-card diff-challenge">
+      <span class="diff-label">Výzva</span>
+      <h3>Detekce kolizí &amp; protokol</h3>
+      <ul>
+        <li>Klient posílá čítač paketů (n++)</li>
+        <li>Server detekuje chybějící čísla → výpočet % ztráty</li>
+        <li>Náhodné zpoždění pro snížení kolizí</li>
+        <li>Navrhni vlastní „protokol" pro adresování konkrétního klienta</li>
+        <li>Porovnej ztrátu paketů na různé vzdálenosti</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warning" style="margin-top:8px;">
+    <strong>Dokumentuj!</strong> Zapiš si: Číslo skupiny · Jaký senzor · Co jsi zjistil o kolizích.
+    Výsledky budeme porovnávat.
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===========================
+     REFERENČNÍ PŘEHLED
+     =========================== -->
+<section class="section">
+  <h2> Rychlý přehled bloků</h2>
+  <table>
+    <thead><tr><th>Blok (MakeCode CZ)</th><th>JavaScript</th><th>Kde ho najdeš</th></tr></thead>
+    <tbody>
+      <tr><td>nastavit skupinu radia na <em>n</em></td><td><code>radio.setGroup(n)</code></td><td>Rádio → Více</td></tr>
+      <tr><td>odeslat číslo <em>n</em></td><td><code>radio.sendNumber(n)</code></td><td>Rádio</td></tr>
+      <tr><td>odeslat hodnotu <em>klíč</em> = <em>n</em></td><td><code>radio.sendValue("k", n)</code></td><td>Rádio</td></tr>
+      <tr><td>při přijetí čísla přes rádio</td><td><code>radio.onReceivedNumber(fn)</code></td><td>Rádio</td></tr>
+      <tr><td>při přijetí hodnoty přes rádio</td><td><code>radio.onReceivedValue(fn)</code></td><td>Rádio</td></tr>
+      <tr><td>síla signálu radia</td><td><code>radio.signalStrength()</code></td><td>Rádio → Více</td></tr>
+      <tr><td>nastavit výkon vysílání na <em>n</em></td><td><code>radio.setTransmitPower(n)</code></td><td>Rádio → Více (1–7)</td></tr>
+      <tr><td>teplota (°C)</td><td><code>input.temperature()</code></td><td>Vstup</td></tr>
+      <tr><td>úroveň světla</td><td><code>input.lightLevel()</code></td><td>Vstup</td></tr>
+      <tr><td>vyber náhodné číslo od <em>a</em> do <em>b</em></td><td><code>randint(a, b)</code></td><td>Matematika</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===========================
+     PROBLÉMY V SÍTI
+     =========================== -->
+<section id="problemy" class="section">
+  <h2> Problémy, které uvidíš v praxi</h2>
+  <p>Tyto věci nejsou chyby v tvém kódu — jsou součástí toho, jak sítě opravdu fungují.</p>
+
+  <table>
+    <thead><tr><th>Problém</th><th>Proč se stane</th><th>Jak to řešit</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Server zobrazuje čísla z jiné skupiny</strong></td>
+        <td>Dvě skupinky mají stejné číslo skupiny</td>
+        <td>Každá skupinka volí unikátní číslo (1, 2, 3…)</td>
+      </tr>
+      <tr>
+        <td><strong>Server nestíhá zobrazovat</strong></td>
+        <td>Klienti posílají příliš často (žádná pauza)</td>
+        <td>Přidej <code>basic.pause(2000)</code> do smyčky klienta</td>
+      </tr>
+      <tr>
+        <td><strong>Zpráva občas nedorazí</strong></td>
+        <td>Kolize: dva klienti poslali ve stejný okamžik</td>
+        <td>Přidej náhodné zpoždění: <code>pause(random(500,2000))</code></td>
+      </tr>
+      <tr>
+        <td><strong>Nevím, od koho data přišla</strong></td>
+        <td>Broadcast neobsahuje adresu odesílatele</td>
+        <td>Klient pošle své ID: <code>sendValue("id", <em>číslo</em>)</code></td>
+      </tr>
+      <tr>
+        <td><strong>Slabý signál / ztráta paketů</strong></td>
+        <td>Velká vzdálenost nebo rušení WiFi</td>
+        <td>Zkontroluj <code>radio.signalStrength()</code>, přibliž se</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary> Jak změřit ztrátu paketů?</summary>
+    <p>
+      Klient posílá čítač (0, 1, 2, 3…). Server sleduje, jestli čísla jdou za sebou.
+      Chybějící číslo = ztracený paket. Tohle je základ monitorování síťové kvality!
+    </p>
+    <pre><code><span class="hl-cmt">// Klient — přidej čítač</span>
+<span class="hl-kw">let</span> <span class="hl-var">pocitadlo</span> = <span class="hl-num">0</span>
+<span class="hl-fn">basic</span>.<span class="hl-fn">forever</span>(<span class="hl-kw">function</span>() {
+    <span class="hl-fn">radio</span>.<span class="hl-fn">sendValue</span>(<span class="hl-str">"n"</span>, <span class="hl-var">pocitadlo</span>)
+    <span class="hl-var">pocitadlo</span>++
+    <span class="hl-fn">basic</span>.<span class="hl-fn">pause</span>(<span class="hl-num">1000</span>)
+})</code></pre>
+  </details>
+</section>
+
+<!-- PATIČKA -->
+<footer>
+  David · Montessori ZŠ Archa ·
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>
+  · MakeCode micro:bit · 2025
+</footer>
+
+</body>
+</html>
