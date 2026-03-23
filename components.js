@@ -4,6 +4,8 @@ const NAV_PAGES = [
   { href: "css.html",            label: "CSS" },
   { href: "github.html",         label: "GitHub" },
   { href: "logicka_hradla.html", label: "Logická hradla" },
+  { href: "ip_dns.html",         label: "IP adresy a DNS"},
+  { href: "microbit-net.html"    label: "Micro:bit Network"},
 ];
 
 // Defining the site-nav component
