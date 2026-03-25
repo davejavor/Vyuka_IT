@@ -6,7 +6,7 @@ const NAV_PAGES = [
   { href: "logicka_hradla.html", label: "Logická hradla" },
   { href: "ip_dns.html",         label: "IP adresy a DNS"},
   { href: "microbit-net.html",   label: "Micro:bit Network"},
-  { href: "digitalni-stopa.html", label: "Digitální stopa"},
+  { href: "digitalni-stopa.html",label: "Digitální stopa"},
 ];
 
 // Defining the site-nav component
