@@ -87,6 +87,16 @@ body.theme-github {
   --color-warning-bg:   #fff0e6;
 }
 
+body.theme-security {
+  --color-primary:      #5c1a3a;
+  --color-secondary:    #8b2a5c;
+  --color-accent:       #8b2a5c;
+  --color-table-header: #8b2a5c;
+  --color-badge-bg:     #8b2a5c;
+  --color-warning-border: #c0392b;
+  --color-tip-border:   #5c1a3a;
+}
+
 /* ===================================
    RESET & ZÁKLADNÍ LAYOUT
    =================================== */

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="cs" class="print-a5">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitální stopa a metadata | IT Návody</title>
+  <link rel="stylesheet" href="navody-print.css">
+  <style>
+    /* Tříúrovňové zadání */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .diff-card {
+      border-radius: var(--border-radius);
+      padding: 12px 14px;
+      break-inside: avoid;
+    }
+
+    .diff-card--zaklad {
+      background: #fffbe6;
+      border-left: 5px solid #f0b400;
+    }
+
+    .diff-card--rozsireni {
+      background: #fff3e6;
+      border-left: 5px solid #e07800;
+    }
+
+    .diff-card--vyzva {
+      background: #fff0f0;
+      border-left: 5px solid #c0392b;
+    }
+
+    .diff-card h3 {
+      margin-top: 0;
+      font-size: 0.95rem;
+    }
+
+    .diff-card ul {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .diff-card li {
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    /* Rychlá reference */
+    .ref-table td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @media print {
+      .diff-card {
+        background: #f9f9f9 !important;
+      }
+      .diff-card--zaklad  { border-left-color: #c09000 !important; }
+      .diff-card--rozsireni { border-left-color: #b06000 !important; }
+      .diff-card--vyzva   { border-left-color: #900000 !important; }
+    }
+  </style>
+  <script src="components.js"></script>
+</head>
+<body class="theme-security">
+
+<site-nav></site-nav>
+
+<!-- ===================================
+     HLAVICKA
+     =================================== -->
+<header class="doc-header">
+  <span class="badge">Bezpecnost</span>
+  <h1>Digitální stopa a metadata</h1>
+  <p class="subtitle">Co o tobě prozrazují soubory, které sdílíš — pro žáky 7.–9. ročníku</p>
+</header>
+
+<!-- ===================================
+     CO JSOU METADATA
+     =================================== -->
+<section class="section">
+  <h2>Co jsou metadata?</h2>
+
+  <p>Metadata jsou <strong>data o datech</strong> — informace, které popisují obsah souboru, aniž by byly jeho přímou součástí.</p>
+
+  <div class="two-col">
+    <div>
+      <h4>Analogie: zásilka</h4>
+      <ul>
+        <li><strong>Obsah zásilky</strong> = vlastní soubor (fotka, text, hudba)</li>
+        <li><strong>Obal zásilky</strong> = metadata (kdo poslal, kdy, odkud, velikost…)</li>
+      </ul>
+      <p>Obal vidí všichni, i když obsah zůstane zapečetěný.</p>
+    </div>
+    <div>
+      <h4>Kde metadata vznikají?</h4>
+      <ul>
+        <li><strong>Fotoaparát / telefon</strong> — GPS poloha, čas, model přístroje</li>
+        <li><strong>Textový editor</strong> — autor, čas vzniku, počet úprav</li>
+        <li><strong>Audio přehrávač</strong> — název skladby, interpret, album</li>
+        <li><strong>PDF a obrázky</strong> — software, profily barev, licence</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Typy metadat podle formátu</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Formát</th>
+        <th>Typ metadat</th>
+        <th>Typické informace</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>JPEG, TIFF, HEIC</td>
+        <td><strong>EXIF</strong></td>
+        <td>GPS, datum, model foťáku, expozice</td>
+      </tr>
+      <tr>
+        <td>MP3, FLAC, OGG</td>
+        <td><strong>ID3</strong></td>
+        <td>Interpret, album, rok, obal</td>
+      </tr>
+      <tr>
+        <td>PDF, obrázky Adobe</td>
+        <td><strong>XMP</strong></td>
+        <td>Autor, software, licence, klíčová slova</td>
+      </tr>
+      <tr>
+        <td>DOCX, XLSX, PPTX</td>
+        <td><strong>Metadata dokumentu</strong></td>
+        <td>Autor, revize, komentáře, čas úprav</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================================
+     EXIF METADATA VE FOTKACH
+     =================================== -->
+<section class="section">
+  <h2>EXIF metadata ve fotkách</h2>
+
+  <p>EXIF (<em>Exchangeable Image File Format</em>) jsou metadata uložená přímo uvnitř souboru fotografie. Obsahují přesné informace o tom, <strong>kdy, kde a čím</strong> byla fotka pořízena.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>EXIF pole</th>
+        <th>Co obsahuje</th>
+        <th>Příklad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>GPS Latitude/Longitude</code></td>
+        <td>Přesná poloha pořízení</td>
+        <td><code>50.0755° N, 14.4378° E</code></td>
+      </tr>
+      <tr>
+        <td><code>DateTime</code></td>
+        <td>Datum a čas pořízení</td>
+        <td><code>2024:03:15 14:32:07</code></td>
+      </tr>
+      <tr>
+        <td><code>Make + Model</code></td>
+        <td>Výrobce a model zařízení</td>
+        <td><code>Apple iPhone 15 Pro</code></td>
+      </tr>
+      <tr>
+        <td><code>Software</code></td>
+        <td>Aplikace, která fotku zpracovala</td>
+        <td><code>Instagram 292.0</code></td>
+      </tr>
+      <tr>
+        <td><code>Orientation</code></td>
+        <td>Natočení přístroje při focení</td>
+        <td><code>Rotate 90 CW</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Jak zobrazit EXIF metadata</h3>
+
+  <div class="step-row">
+    <span class="step-num">1</span>
+    <div>
+      <strong>Windows — Vlastnosti souboru:</strong>
+      Klikni pravým tlačítkem na fotku → <em>Vlastnosti</em> → záložka <em>Podrobnosti</em>. Uvidíš GPS, datum, model přístroje i nastavení expozice.
+    </div>
+  </div>
+
+  <div class="step-row">
+    <span class="step-num">2</span>
+    <div>
+      <strong>Online — jimpl.com/exif:</strong>
+      Přetáhni fotku do prohlížeče. <em>Soubor se nenahrává na server</em> — vše probíhá lokálně v prohlížeči. Funguje na Chromebooku i PC.
+    </div>
+  </div>
+
+  <div class="step-row">
+    <span class="step-num">3</span>
+    <div>
+      <strong>Telefon — vypnout geolokaci:</strong>
+      Otevři <em>Nastavení fotoaparátu</em> → hledej <em>Poloha</em> nebo <em>Geolokační značky</em> → vypni. Nové fotky GPS data nebudou obsahovat.
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>Pozor — sdílení souboru EXIF nemaže:</strong>
+    Pokud fotku pošleš přímým přenosem (<em>AirDrop, email, USB, WhatsApp</em>), příjemce dostane i GPS souřadnice a všechna ostatní metadata. Sociální sítě (Instagram, Facebook) EXIF odstraní pro ostatní uživatele, ale <strong>samy si ho uchovávají</strong> pro vlastní analýzu.
+  </div>
+
+  <div class="tip">
+    <strong>Tip — hromadné smazání EXIF na Windows:</strong>
+    Označ více fotek najednou → pravý klik → <em>Vlastnosti</em> → záložka <em>Podrobnosti</em> → odkaz <em>Odebrat vlastnosti a osobní informace</em> ve spodní části okna.
+  </div>
+
+  <h3>Jak smazat EXIF</h3>
+  <ul>
+    <li><strong>Windows Vlastnosti:</strong> Vlastnosti → Podrobnosti → Odebrat vlastnosti a osobní informace → zvolit, co smazat → OK</li>
+    <li><strong>Online — verexif.com:</strong> Nahraj fotku, stáhni verzi bez EXIF dat. Vhodné i na Chromebooku.</li>
+  </ul>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================================
+     METADATA V DOKUMENTECH
+     =================================== -->
+<section class="section">
+  <h2>Metadata v dokumentech</h2>
+
+  <p>Textové dokumenty si pamatují mnohem víc, než jen text. Tato metadata mohou odhalit, kdo dokument vytvořil, jak dlouho na něm pracoval, nebo jaké komentáře byly smazány.</p>
+
+  <div class="two-col">
+    <div>
+      <h4>Google Docs — Historie verzí</h4>
+      <ul>
+        <li>Otevři dokument → <em>Soubor → Historie verzí → Zobrazit historii verzí</em></li>
+        <li>Vidíš každou uloženou verzi s časem a autorem</li>
+        <li>Lze obnovit starší verzi</li>
+        <li>Historie je viditelná všem, kdo mají přístup k dokumentu</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Word / DOCX — pro zvídavé</h4>
+      <ul>
+        <li>Přejmenuj soubor <code>.docx</code> na <code>.zip</code></li>
+        <li>Rozbal archiv — uvnitř je složka <code>docProps/</code></li>
+        <li>Otevři soubor <code>core.xml</code> v textovém editoru</li>
+        <li>Najdeš: autora, čas vzniku, čas poslední úpravy, počet revizí</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Co se v dokumentech ukládá:</h4>
+  <ul>
+    <li><strong>Autor</strong> — přezdívka nebo jméno z nastavení aplikace</li>
+    <li><strong>Čas vzniku</strong> a <strong>čas poslední úpravy</strong></li>
+    <li><strong>Počet revizí</strong> — kolikrát byl soubor uložen</li>
+    <li><strong>Smazané komentáře</strong> — mohou zůstat skryté v souboru</li>
+    <li><strong>Jména spolupracovníků</strong> v historii verzí</li>
+  </ul>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================================
+     ZADANI PRO ZAKY
+     =================================== -->
+<section class="section">
+  <h2>Zadání pro žáky</h2>
+
+  <div class="diff-grid">
+
+    <div class="diff-card diff-card--zaklad">
+      <h3>Základ</h3>
+      <ul>
+        <li>Vezmi vlastní fotku (z telefonu nebo PC) a otevři ji na <strong>jimpl.com/exif</strong> v prohlížeči. Co tam vidíš? Jsou v ní GPS souřadnice?</li>
+        <li>Zkus smazat EXIF data z fotky pomocí <strong>verexif.com</strong>. Zkontroluj výsledek — co zmizelo?</li>
+      </ul>
+    </div>
+
+    <div class="diff-card diff-card--rozsireni">
+      <h3>Rozšíření</h3>
+      <ul>
+        <li>Otevři libovolný <strong>Google Docs</strong> dokument → <em>Soubor → Historie verzí</em> → projdi historii. Kdo a kdy dokument upravoval?</li>
+        <li>Na telefonu najdi nastavení fotoaparátu a <strong>vypni ukládání GPS souřadnic</strong> do fotek. Vyfot testovací snímek a ověř, že poloha v EXIF chybí.</li>
+        <li>Stáhni libovolný soubor <code>.docx</code>, přejmenuj ho na <code>.zip</code>, rozbal a otevři <code>docProps/core.xml</code>. Co se tam skrývá?</li>
+      </ul>
+    </div>
+
+    <div class="diff-card diff-card--vyzva">
+      <h3>Výzva</h3>
+      <ul>
+        <li>Porovnej metadata různých typů souborů — <strong>JPG vs PNG vs PDF</strong>. Které formáty ukládají GPS polohu a které ne? Proč?</li>
+        <li>Nainstaluj knihovnu <strong>Pillow</strong> v Pythonu a přečti EXIF vlastním skriptem:
+          <pre><code>from PIL import Image, ExifTags
+
+img = Image.open("fotka.jpg")
+exif = img._getexif()
+if exif:
+    for tag_id, val in exif.items():
+        tag = ExifTags.TAGS.get(tag_id, tag_id)
+        print(f"{tag}: {val}")</code></pre>
+        </li>
+        <li>Na Windows PC zkus příkaz v PowerShellu pomocí nástroje <strong>exiftool</strong>:
+          <pre><code>exiftool fotka.jpg</code></pre>
+          Vypíše všechna metadata včetně GPS. Lze hromadně: <code>exiftool *.jpg</code>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===================================
+     RYCHLA REFERENCE
+     =================================== -->
+<section class="section">
+  <h2>Rychlá reference</h2>
+  <table class="ref-table">
+    <thead>
+      <tr>
+        <th>Nástroj</th>
+        <th>Účel</th>
+        <th>Platforma</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>jimpl.com/exif</td>
+        <td>Zobrazení EXIF metadat — lokálně v prohlížeči, soubor se nenahrává</td>
+        <td>Chromebook, PC, Mac</td>
+      </tr>
+      <tr>
+        <td>verexif.com</td>
+        <td>Smazání EXIF metadat z fotky online</td>
+        <td>Chromebook, PC, Mac</td>
+      </tr>
+      <tr>
+        <td>Windows Vlastnosti → Podrobnosti</td>
+        <td>Zobrazení i hromadné smazání EXIF</td>
+        <td>Windows</td>
+      </tr>
+      <tr>
+        <td>Google Docs → Historie verzí</td>
+        <td>Kdo a kdy upravoval dokument</td>
+        <td>Chromebook, PC (prohlížeč)</td>
+      </tr>
+      <tr>
+        <td>exiftool (CLI)</td>
+        <td>Pokročilé čtení, úprava i smazání metadat</td>
+        <td>Windows (PowerShell), Mac, Linux</td>
+      </tr>
+      <tr>
+        <td>Pillow (Python)</td>
+        <td>Čtení EXIF vlastním skriptem</td>
+        <td>Kdekoliv s Pythonem</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===================================
+     PATICKA
+     =================================== -->
+<footer>
+  <p>
+    Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
+    Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a><br>
+    <span class="text-small">Můžeš volně sdílet a upravovat s uvedením autora.</span>
+  </p>
+</footer>
+
+</body>
+</html>
