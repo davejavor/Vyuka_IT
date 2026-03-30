@@ -315,6 +315,258 @@
   </ul>
 </section>
 
+<hr class="section-divider">
+
+<!-- ====================================================
+     POKROČILÉ FORMULÁŘE
+     ==================================================== -->
+<section class="section" id="formulare-pokrocile">
+  <h2>Pokročilé formuláře</h2>
+  <p>Formuláře mají mnoho možností, jak zlepšit práci uživatele — seskupení polí, nápovědy i vestavěná validace bez JavaScriptu.</p>
+
+  <h3>Seskupení polí — <code>&lt;fieldset&gt;</code> a <code>&lt;legend&gt;</code></h3>
+<pre><span class="hl-tag">&lt;form&gt;</span>
+  <span class="hl-tag">&lt;fieldset&gt;</span>
+    <span class="hl-tag">&lt;legend&gt;</span>Osobní údaje<span class="hl-tag">&lt;/legend&gt;</span>
+    <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"jmeno"</span><span class="hl-tag">&gt;</span>Jméno:<span class="hl-tag">&lt;/label&gt;</span>
+    <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">id</span>=<span class="hl-val">"jmeno"</span> <span class="hl-attr">name</span>=<span class="hl-val">"jmeno"</span> <span class="hl-attr">required</span> <span class="hl-attr">placeholder</span>=<span class="hl-val">"Zadej jméno"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"email"</span><span class="hl-tag">&gt;</span>E-mail:<span class="hl-tag">&lt;/label&gt;</span>
+    <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"email"</span> <span class="hl-attr">id</span>=<span class="hl-val">"email"</span> <span class="hl-attr">name</span>=<span class="hl-val">"email"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;/fieldset&gt;</span>
+  <span class="hl-tag">&lt;fieldset&gt;</span>
+    <span class="hl-tag">&lt;legend&gt;</span>Třída<span class="hl-tag">&lt;/legend&gt;</span>
+    <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"radio"</span> <span class="hl-attr">id</span>=<span class="hl-val">"r7"</span> <span class="hl-attr">name</span>=<span class="hl-val">"trida"</span> <span class="hl-attr">value</span>=<span class="hl-val">"7"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"r7"</span><span class="hl-tag">&gt;</span>7. třída<span class="hl-tag">&lt;/label&gt;</span>
+    <span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"radio"</span> <span class="hl-attr">id</span>=<span class="hl-val">"r8"</span> <span class="hl-attr">name</span>=<span class="hl-val">"trida"</span> <span class="hl-attr">value</span>=<span class="hl-val">"8"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"r8"</span><span class="hl-tag">&gt;</span>8. třída<span class="hl-tag">&lt;/label&gt;</span>
+  <span class="hl-tag">&lt;/fieldset&gt;</span>
+  <span class="hl-tag">&lt;button</span> <span class="hl-attr">type</span>=<span class="hl-val">"submit"</span><span class="hl-tag">&gt;</span>Odeslat<span class="hl-tag">&lt;/button&gt;</span>
+<span class="hl-tag">&lt;/form&gt;</span></pre>
+
+  <h3>Nápovědný seznam — <code>&lt;datalist&gt;</code></h3>
+<pre><span class="hl-tag">&lt;label</span> <span class="hl-attr">for</span>=<span class="hl-val">"mesto"</span><span class="hl-tag">&gt;</span>Město:<span class="hl-tag">&lt;/label&gt;</span>
+<span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">id</span>=<span class="hl-val">"mesto"</span> <span class="hl-attr">list</span>=<span class="hl-val">"mesta"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;datalist</span> <span class="hl-attr">id</span>=<span class="hl-val">"mesta"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;option</span> <span class="hl-attr">value</span>=<span class="hl-val">"Praha"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;option</span> <span class="hl-attr">value</span>=<span class="hl-val">"Brno"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;option</span> <span class="hl-attr">value</span>=<span class="hl-val">"Ostrava"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;/datalist&gt;</span></pre>
+  <div class="tip"><code>&lt;datalist&gt;</code> zobrazí nápovědu při psaní — uživatel si může vybrat, nebo napsat vlastní hodnotu.</div>
+
+  <details>
+    <summary>Pro pokročilé: HTML5 typy polí a vestavěná validace</summary>
+    <h4>Nové HTML5 typy vstupních polí</h4>
+    <table>
+      <thead><tr><th>Typ</th><th>Popis</th></tr></thead>
+      <tbody>
+        <tr><td><code>color</code></td><td>Výběr barvy (barevný picker)</td></tr>
+        <tr><td><code>range</code></td><td>Posuvník pro číslo v rozsahu</td></tr>
+        <tr><td><code>date</code> / <code>time</code></td><td>Výběr data nebo času</td></tr>
+        <tr><td><code>search</code></td><td>Vyhledávací pole (s tlačítkem × pro smazání)</td></tr>
+        <tr><td><code>tel</code></td><td>Telefonní číslo</td></tr>
+        <tr><td><code>url</code></td><td>Webová adresa (ověří formát)</td></tr>
+      </tbody>
+    </table>
+    <h4>Vestavěná validace (bez JavaScriptu)</h4>
+<pre><span class="hl-cmt">&lt;!-- Povinné pole --&gt;</span>
+<span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">required</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Délka textu --&gt;</span>
+<span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"text"</span> <span class="hl-attr">minlength</span>=<span class="hl-val">"3"</span> <span class="hl-attr">maxlength</span>=<span class="hl-val">"20"</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Vzor (regulární výraz) --&gt;</span>
+<span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"tel"</span> <span class="hl-attr">pattern</span>=<span class="hl-val">"[0-9]{9}"</span> <span class="hl-attr">placeholder</span>=<span class="hl-val">"123456789"</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Rozsah čísla --&gt;</span>
+<span class="hl-tag">&lt;input</span> <span class="hl-attr">type</span>=<span class="hl-val">"number"</span> <span class="hl-attr">min</span>=<span class="hl-val">"7"</span> <span class="hl-attr">max</span>=<span class="hl-val">"18"</span><span class="hl-tag">&gt;</span></pre>
+  </details>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     META TAGY
+     ==================================================== -->
+<section class="section" id="meta-tagy">
+  <h2>Meta tagy v hlavičce</h2>
+  <p>Meta tagy jsou v sekci <code>&lt;head&gt;</code> a poskytují informace o stránce — prohlížeči, vyhledávačům i sociálním sítím.</p>
+
+<pre><span class="hl-tag">&lt;head&gt;</span>
+  <span class="hl-cmt">&lt;!-- Kódování znaků — vždy jako první! --&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Správné zobrazení na mobilech --&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"viewport"</span> <span class="hl-attr">content</span>=<span class="hl-val">"width=device-width, initial-scale=1.0"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Popis stránky (zobrazuje se ve výsledcích vyhledávání) --&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"description"</span> <span class="hl-attr">content</span>=<span class="hl-val">"Výukové materiály z informatiky pro ZŠ"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Klíčová slova (dnes méně důležitá) --&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"keywords"</span> <span class="hl-attr">content</span>=<span class="hl-val">"html, css, informatika, škola"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Autor stránky --&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"author"</span> <span class="hl-attr">content</span>=<span class="hl-val">"David"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-tag">&lt;title&gt;</span>IT Návody<span class="hl-tag">&lt;/title&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span></pre>
+
+  <div class="tip">Meta tag <code>description</code> se zobrazuje přímo ve výsledcích vyhledávání pod názvem stránky — piš ho pečlivě, je to první věc, co uživatel vidí.</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     KOMPLETNÍ STRUKTURA STRÁNKY
+     ==================================================== -->
+<section class="section" id="struktura-stranky">
+  <h2>Kompletní struktura webové stránky</h2>
+  <p>Ukázka dobře napsané HTML stránky s využitím sémantických tagů — třídní web jako příklad:</p>
+
+<pre><span class="hl-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"cs"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;head&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"viewport"</span> <span class="hl-attr">content</span>=<span class="hl-val">"width=device-width, initial-scale=1.0"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"description"</span> <span class="hl-attr">content</span>=<span class="hl-val">"Stránka třídy 7.A"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;title&gt;</span>Třídní web 7.A<span class="hl-tag">&lt;/title&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span>
+<span class="hl-tag">&lt;body&gt;</span>
+
+  <span class="hl-tag">&lt;header&gt;</span>                    <span class="hl-cmt">&lt;!-- hlavička s logem a navigací --&gt;</span>
+    <span class="hl-tag">&lt;h1&gt;</span>Třídní web 7.A<span class="hl-tag">&lt;/h1&gt;</span>
+    <span class="hl-tag">&lt;nav&gt;</span>
+      <span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"index.html"</span><span class="hl-tag">&gt;</span>Úvod<span class="hl-tag">&lt;/a&gt;</span>
+      <span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"rozvrh.html"</span><span class="hl-tag">&gt;</span>Rozvrh<span class="hl-tag">&lt;/a&gt;</span>
+      <span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"kontakt.html"</span><span class="hl-tag">&gt;</span>Kontakt<span class="hl-tag">&lt;/a&gt;</span>
+    <span class="hl-tag">&lt;/nav&gt;</span>
+  <span class="hl-tag">&lt;/header&gt;</span>
+
+  <span class="hl-tag">&lt;main&gt;</span>                      <span class="hl-cmt">&lt;!-- hlavní obsah stránky --&gt;</span>
+    <span class="hl-tag">&lt;article&gt;</span>
+      <span class="hl-tag">&lt;h2&gt;</span>Aktuality<span class="hl-tag">&lt;/h2&gt;</span>
+      <span class="hl-tag">&lt;p&gt;</span>Příští týden je výlet na hrad Karlštejn.<span class="hl-tag">&lt;/p&gt;</span>
+    <span class="hl-tag">&lt;/article&gt;</span>
+    <span class="hl-tag">&lt;aside&gt;</span>                  <span class="hl-cmt">&lt;!-- boční panel --&gt;</span>
+      <span class="hl-tag">&lt;h3&gt;</span>Rychlé info<span class="hl-tag">&lt;/h3&gt;</span>
+      <span class="hl-tag">&lt;p&gt;</span>Třídní učitel: pan Novák<span class="hl-tag">&lt;/p&gt;</span>
+    <span class="hl-tag">&lt;/aside&gt;</span>
+  <span class="hl-tag">&lt;/main&gt;</span>
+
+  <span class="hl-tag">&lt;footer&gt;</span>                    <span class="hl-cmt">&lt;!-- patička --&gt;</span>
+    <span class="hl-tag">&lt;p&gt;</span>&amp;copy; 2025 Třída 7.A<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-tag">&lt;/footer&gt;</span>
+
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></pre>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     PŘÍSTUPNOST
+     ==================================================== -->
+<section class="section" id="pristupnost">
+  <h2>Přístupnost (Accessibility)</h2>
+  <p>Přístupný web mohou používat všichni — i lidé se zrakovým postižením, kteří používají čtečky obrazovky.</p>
+
+  <h3>Základní pravidla</h3>
+  <table>
+    <thead><tr><th>Co dělat</th><th>Proč</th><th>Příklad</th></tr></thead>
+    <tbody>
+      <tr><td>Vyplnit <code>alt</code> u obrázků</td><td>Čtečka přečte popis místo obrázku</td><td><code>&lt;img alt="Logo školy"&gt;</code></td></tr>
+      <tr><td>Párovat <code>&lt;label&gt;</code> s polem</td><td>Kliknutí na popisek aktivuje pole</td><td><code>&lt;label for="jmeno"&gt;</code></td></tr>
+      <tr><td>Přidat <code>&lt;caption&gt;</code> do tabulky</td><td>Popisuje obsah tabulky pro čtečky</td><td><code>&lt;caption&gt;Rozvrh 7.A&lt;/caption&gt;</code></td></tr>
+      <tr><td>Používat sémantické tagy</td><td>Logická struktura pomáhá navigaci</td><td><code>&lt;nav&gt;, &lt;main&gt;, &lt;header&gt;</code></td></tr>
+      <tr><td>Dostatečný kontrast barev</td><td>Text musí být čitelný i při slabém vidění</td><td>tmavý text na světlém pozadí</td></tr>
+    </tbody>
+  </table>
+
+  <details>
+    <summary>Pro pokročilé: ARIA atributy a skip-link</summary>
+    <p>ARIA (<em>Accessible Rich Internet Applications</em>) atributy přidávají sémantiku tam, kde HTML nestačí:</p>
+<pre><span class="hl-cmt">&lt;!-- Popis pro čtečku (neviditelný text) --&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">aria-label</span>=<span class="hl-val">"Zavřít dialog"</span><span class="hl-tag">&gt;</span>×<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Skrytí dekorativního prvku před čtečkou --&gt;</span>
+<span class="hl-tag">&lt;img</span> <span class="hl-attr">src</span>=<span class="hl-val">"dekorace.png"</span> <span class="hl-attr">alt</span>=<span class="hl-val">""</span> <span class="hl-attr">aria-hidden</span>=<span class="hl-val">"true"</span><span class="hl-tag">&gt;</span>
+
+<span class="hl-cmt">&lt;!-- Skip link — přeskočení navigace na hlavní obsah --&gt;</span>
+<span class="hl-tag">&lt;a</span> <span class="hl-attr">href</span>=<span class="hl-val">"#obsah"</span> <span class="hl-attr">class</span>=<span class="hl-val">"skip-link"</span><span class="hl-tag">&gt;</span>Přejít na obsah<span class="hl-tag">&lt;/a&gt;</span>
+<span class="hl-tag">&lt;main</span> <span class="hl-attr">id</span>=<span class="hl-val">"obsah"</span><span class="hl-tag">&gt;</span>...<span class="hl-tag">&lt;/main&gt;</span></pre>
+  </details>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     DATOVÉ ATRIBUTY
+     ==================================================== -->
+<section class="section" id="data-atributy">
+  <h2>Datové atributy <code>data-*</code></h2>
+  <p>Datové atributy umožňují uložit vlastní data přímo v HTML elementu — bez speciálních tříd nebo skrytých polí.</p>
+
+<pre><span class="hl-cmt">&lt;!-- Data uložená přímo v HTML --&gt;</span>
+<span class="hl-tag">&lt;li</span> <span class="hl-attr">data-id</span>=<span class="hl-val">"42"</span> <span class="hl-attr">data-kategorie</span>=<span class="hl-val">"sport"</span><span class="hl-tag">&gt;</span>Fotbal<span class="hl-tag">&lt;/li&gt;</span>
+
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">data-akce</span>=<span class="hl-val">"smazat"</span> <span class="hl-attr">data-id</span>=<span class="hl-val">"42"</span><span class="hl-tag">&gt;</span>Smazat<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-cmt">&lt;!-- CSS může data-* použít jako obsah --&gt;</span>
+<span class="hl-tag">&lt;span</span> <span class="hl-attr">data-tooltip</span>=<span class="hl-val">"Klikni pro více info"</span><span class="hl-tag">&gt;</span>?<span class="hl-tag">&lt;/span&gt;</span></pre>
+
+  <details>
+    <summary>Pro pokročilé: čtení dat z JavaScriptu</summary>
+<pre>const btn = document.querySelector('button');
+
+// Čtení hodnot
+console.log(btn.dataset.akce);   // "smazat"
+console.log(btn.dataset.id);     // "42"
+
+// Nastavení hodnoty
+btn.dataset.stav = 'aktivni';</pre>
+    <div class="tip">Atribut <code>data-moje-data</code> se v JS stane <code>dataset.mojeData</code> — pomlčka se převede na camelCase.</div>
+  </details>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     SVG V HTML
+     ==================================================== -->
+<section class="section" id="svg">
+  <h2>SVG v HTML</h2>
+  <p>SVG (<em>Scalable Vector Graphics</em>) jsou vektorové obrázky přímo v HTML. Na rozdíl od JPG nebo PNG se nerozmazají při jakémkoli zvětšení.</p>
+
+<pre><span class="hl-tag">&lt;svg</span> <span class="hl-attr">width</span>=<span class="hl-val">"200"</span> <span class="hl-attr">height</span>=<span class="hl-val">"100"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Obdélník --&gt;</span>
+  <span class="hl-tag">&lt;rect</span> <span class="hl-attr">x</span>=<span class="hl-val">"10"</span> <span class="hl-attr">y</span>=<span class="hl-val">"10"</span> <span class="hl-attr">width</span>=<span class="hl-val">"80"</span> <span class="hl-attr">height</span>=<span class="hl-val">"50"</span>
+        <span class="hl-attr">fill</span>=<span class="hl-val">"blue"</span> <span class="hl-attr">stroke</span>=<span class="hl-val">"black"</span> <span class="hl-tag">/&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Kruh --&gt;</span>
+  <span class="hl-tag">&lt;circle</span> <span class="hl-attr">cx</span>=<span class="hl-val">"150"</span> <span class="hl-attr">cy</span>=<span class="hl-val">"35"</span> <span class="hl-attr">r</span>=<span class="hl-val">"25"</span>
+           <span class="hl-attr">fill</span>=<span class="hl-val">"red"</span> <span class="hl-tag">/&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Čára --&gt;</span>
+  <span class="hl-tag">&lt;line</span> <span class="hl-attr">x1</span>=<span class="hl-val">"0"</span> <span class="hl-attr">y1</span>=<span class="hl-val">"75"</span> <span class="hl-attr">x2</span>=<span class="hl-val">"200"</span> <span class="hl-attr">y2</span>=<span class="hl-val">"75"</span>
+        <span class="hl-attr">stroke</span>=<span class="hl-val">"black"</span> <span class="hl-attr">stroke-width</span>=<span class="hl-val">"2"</span> <span class="hl-tag">/&gt;</span>
+
+  <span class="hl-cmt">&lt;!-- Text --&gt;</span>
+  <span class="hl-tag">&lt;text</span> <span class="hl-attr">x</span>=<span class="hl-val">"10"</span> <span class="hl-attr">y</span>=<span class="hl-val">"95"</span> <span class="hl-attr">font-size</span>=<span class="hl-val">"12"</span><span class="hl-tag">&gt;</span>Ahoj SVG!<span class="hl-tag">&lt;/text&gt;</span>
+
+<span class="hl-tag">&lt;/svg&gt;</span></pre>
+
+  <table>
+    <thead><tr><th>Prvek</th><th>Klíčové atributy</th><th>Popis</th></tr></thead>
+    <tbody>
+      <tr><td><code>&lt;rect&gt;</code></td><td><code>x, y, width, height</code></td><td>Obdélník</td></tr>
+      <tr><td><code>&lt;circle&gt;</code></td><td><code>cx, cy, r</code></td><td>Kruh (střed + poloměr)</td></tr>
+      <tr><td><code>&lt;line&gt;</code></td><td><code>x1, y1, x2, y2</code></td><td>Úsečka</td></tr>
+      <tr><td><code>&lt;text&gt;</code></td><td><code>x, y, font-size</code></td><td>Text</td></tr>
+    </tbody>
+  </table>
+  <div class="tip">SVG se styluje pomocí CSS nebo přímo atributy: <code>fill</code> = výplň, <code>stroke</code> = obrys, <code>stroke-width</code> = tloušťka obrysu.</div>
+</section>
+
 <footer>
   <p>
     Autor: <strong>David</strong> | Montessori ZŠ Archa<br>

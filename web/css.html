@@ -398,6 +398,146 @@
 }</pre>
 </section>
 
+<hr class="section-divider">
+
+<!-- ====================================================
+     HSL BARVY
+     ==================================================== -->
+<section class="section" id="hsl-barvy">
+  <h2>Barvy v HSL a HSLA</h2>
+  <p>HSL je alternativní způsob zápisu barev — <strong>H</strong>ue (odstín), <strong>S</strong>aturation (sytost), <strong>L</strong>ightness (světlost). Snáze se přemýšlí o barvách než u HEX nebo RGB.</p>
+
+<pre><span class="hl-sel">p</span> {
+  <span class="hl-cmt">/* hsl(odstín 0-360, sytost %, světlost %) */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">hsl(0, 100%, 50%)</span>;       <span class="hl-cmt">/* červená */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">hsl(120, 100%, 35%)</span>;     <span class="hl-cmt">/* zelená */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">hsl(240, 100%, 50%)</span>;     <span class="hl-cmt">/* modrá */</span>
+
+  <span class="hl-cmt">/* hsla — jako hsl, navíc průhlednost (0–1) */</span>
+  <span class="hl-prop">color</span>: <span class="hl-val">hsla(0, 100%, 50%, 0.5)</span>; <span class="hl-cmt">/* poloprůhledná červená */</span>
+}
+
+<span class="hl-cmt">/* Výhoda HSL: lehce tvoříme tónové varianty */</span>
+<span class="hl-sel">.svetla</span>  { <span class="hl-prop">background</span>: <span class="hl-val">hsl(220, 70%, 80%)</span>; } <span class="hl-cmt">/* světle modrá */</span>
+<span class="hl-sel">.tmava</span>   { <span class="hl-prop">background</span>: <span class="hl-val">hsl(220, 70%, 30%)</span>; } <span class="hl-cmt">/* tmavě modrá */</span></pre>
+
+  <table>
+    <thead><tr><th>Formát</th><th>Příklad</th><th>Kdy použít</th></tr></thead>
+    <tbody>
+      <tr><td><code>named</code></td><td><code>red</code></td><td>Rychlé prototypování</td></tr>
+      <tr><td><code>#hex</code></td><td><code>#ff0000</code></td><td>Přesná barva z grafiky</td></tr>
+      <tr><td><code>rgb()</code></td><td><code>rgb(255,0,0)</code></td><td>Dynamické barvy v JS</td></tr>
+      <tr><td><code>rgba()</code></td><td><code>rgba(255,0,0,0.5)</code></td><td>Průhlednost</td></tr>
+      <tr><td><code>hsl()</code></td><td><code>hsl(0,100%,50%)</code></td><td>Tvoření barevných variant</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     Z-INDEX
+     ==================================================== -->
+<section class="section" id="z-index">
+  <h2>Z-index — vrstvení prvků</h2>
+  <p>Když se prvky překrývají, <code>z-index</code> určuje, který bude nahoře. Funguje jen na pozicovaných prvcích (<code>position: relative/absolute/fixed/sticky</code>).</p>
+
+<pre><span class="hl-sel">.pozadi</span> {
+  <span class="hl-prop">position</span>: <span class="hl-val">absolute</span>;
+  <span class="hl-prop">z-index</span>: <span class="hl-val">1</span>;    <span class="hl-cmt">/* dole */</span>
+}
+
+<span class="hl-sel">.obsah</span> {
+  <span class="hl-prop">position</span>: <span class="hl-val">absolute</span>;
+  <span class="hl-prop">z-index</span>: <span class="hl-val">10</span>;   <span class="hl-cmt">/* uprostřed */</span>
+}
+
+<span class="hl-sel">.modal</span> {
+  <span class="hl-prop">position</span>: <span class="hl-val">fixed</span>;
+  <span class="hl-prop">z-index</span>: <span class="hl-val">100</span>;  <span class="hl-cmt">/* vždy nahoře — modální okno */</span>
+}</pre>
+
+  <div class="tip">Vyšší číslo = blíže k uživateli. Záporné číslo (<code>z-index: -1</code>) prvek posune za normální tok stránky.</div>
+  <div class="warning">Z-index funguje jen u prvků s <code>position</code> nastaveným na jinou hodnotu než <code>static</code>.</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     FLOAT A CLEAR
+     ==================================================== -->
+<section class="section" id="float">
+  <h2>Float a Clear</h2>
+  <p>Float byl dlouho hlavní způsob rozmísťování prvků vedle sebe — dnes ho nahrazuje Flexbox a Grid, ale stále se používá pro obtékání textu kolem obrázků.</p>
+
+<pre><span class="hl-cmt">/* Obrázek s obtékajícím textem */</span>
+<span class="hl-sel">img.vlevo</span> {
+  <span class="hl-prop">float</span>: <span class="hl-val">left</span>;     <span class="hl-cmt">/* text obtéká zprava */</span>
+  <span class="hl-prop">margin</span>: <span class="hl-val">0 1rem 1rem 0</span>;
+}
+
+<span class="hl-sel">img.vpravo</span> {
+  <span class="hl-prop">float</span>: <span class="hl-val">right</span>;    <span class="hl-cmt">/* text obtéká zleva */</span>
+  <span class="hl-prop">margin</span>: <span class="hl-val">0 0 1rem 1rem</span>;
+}
+
+<span class="hl-cmt">/* Clear — ukončení obtékání */</span>
+<span class="hl-sel">.konec-float</span> {
+  <span class="hl-prop">clear</span>: <span class="hl-val">both</span>;   <span class="hl-cmt">/* prvek začne pod floatovanými prvky */</span>
+}
+
+<span class="hl-cmt">/* Clearfix — moderní řešení přetékajícího rodiče */</span>
+<span class="hl-sel">.clearfix::after</span> {
+  <span class="hl-prop">content</span>: <span class="hl-val">""</span>;
+  <span class="hl-prop">display</span>: <span class="hl-val">table</span>;
+  <span class="hl-prop">clear</span>: <span class="hl-val">both</span>;
+}</pre>
+
+  <div class="tip">Pro rozvržení layoutu stránky dnes vždy preferuj <strong>Flexbox</strong> nebo <strong>Grid</strong>. Float používej pouze na obtékání textu kolem obrázku — to je jeho původní účel.</div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ====================================================
+     RESPONZIVNÍ DESIGN BEZ MEDIA QUERIES
+     ==================================================== -->
+<section class="section" id="responzivni-moderni">
+  <h2>Moderní responzivní design</h2>
+  <p>Moderní CSS funkce umožňují vytvořit responzivní design bez jediné media query — prohlížeč si sám vypočítá správné hodnoty.</p>
+
+  <h3>Funkce <code>clamp()</code> — plynulá typografie</h3>
+<pre><span class="hl-sel">h1</span> {
+  <span class="hl-cmt">/* clamp(minimum, ideální, maximum) */</span>
+  <span class="hl-prop">font-size</span>: <span class="hl-val">clamp(1.5rem, 5vw, 3rem)</span>;
+  <span class="hl-cmt">/* min 1.5rem, roste s šířkou okna, max 3rem */</span>
+}</pre>
+
+  <h3>Funkce <code>min()</code> a <code>max()</code></h3>
+<pre><span class="hl-sel">.box</span> {
+  <span class="hl-cmt">/* min() vybere menší hodnotu */</span>
+  <span class="hl-prop">width</span>: <span class="hl-val">min(500px, 90%)</span>;   <span class="hl-cmt">/* nikdy víc než 500px a zároveň max 90% */</span>
+
+  <span class="hl-cmt">/* max() vybere větší hodnotu */</span>
+  <span class="hl-prop">padding</span>: <span class="hl-val">max(1rem, 3vw)</span>;  <span class="hl-cmt">/* aspoň 1rem, nebo 3% šířky */</span>
+}</pre>
+
+  <h3>Viewport jednotky</h3>
+<pre><span class="hl-sel">.hrdina</span> {
+  <span class="hl-prop">width</span>:  <span class="hl-val">100vw</span>;  <span class="hl-cmt">/* 100 % šířky okna */</span>
+  <span class="hl-prop">height</span>: <span class="hl-val">100vh</span>;  <span class="hl-cmt">/* 100 % výšky okna */</span>
+  <span class="hl-prop">font-size</span>: <span class="hl-val">4vw</span>; <span class="hl-cmt">/* 4 % šířky okna */</span>
+}</pre>
+
+  <h3>Automaticky responzivní grid</h3>
+<pre><span class="hl-sel">.karty</span> {
+  <span class="hl-prop">display</span>: <span class="hl-val">grid</span>;
+  <span class="hl-cmt">/* Automaticky přizpůsobí počet sloupců */</span>
+  <span class="hl-prop">grid-template-columns</span>: <span class="hl-val">repeat(auto-fit, minmax(200px, 1fr))</span>;
+  <span class="hl-prop">gap</span>: <span class="hl-val">1rem</span>;
+}</pre>
+  <div class="tip"><code>auto-fit</code> + <code>minmax()</code> je nejelegantnější způsob mřížky karet — sám si vypočítá, kolik sloupců se vejde, aniž bys napsal jedinou media query.</div>
+</section>
+
 <footer>
   <p>
     Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
