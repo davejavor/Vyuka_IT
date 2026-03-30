@@ -560,7 +560,7 @@ nav.site-nav .nav-logo {
   text-decoration: none;
 }
 
-nav.site-nav ul {
+nav.site-nav > ul {
   display: flex;
   list-style: none;
   gap: 8px;
@@ -742,7 +742,7 @@ nav.site-nav .btn-print {
     align-items: center;
   }
 
-  nav.site-nav ul {
+  nav.site-nav > ul {
     display: none;
     flex-direction: column;
     width: 100%;

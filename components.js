@@ -36,7 +36,7 @@ const NAV_MENU = [
 // CSS pro dropdown — vloženo jednorázově do <head>
 const DROPDOWN_CSS = `
 /* === Dropdown navigace === */
-nav.site-nav ul {
+nav.site-nav > ul {
   align-items: center;
 }
 
