@@ -33,14 +33,14 @@ const NAV_MENU = [
   // { label: "AI",   items: [] }, // pr\u00e1zdn\u00e1 slo\u017eka
 ];
 
-// CSS pro dropdown — vlo\u017eno jednor\u00e1zov\u011b do <head>
+// CSS pro dropdown — vloženo jednorázově do <head>
 const DROPDOWN_CSS = `
 /* === Dropdown navigace === */
 nav.site-nav ul {
   align-items: center;
 }
 
-/* Polo\u017eky s dropdownem */
+/* Položky s dropdownem */
 .has-dropdown {
   position: relative;
 }
@@ -112,19 +112,21 @@ nav.site-nav ul {
   padding-left: 13px;
 }
 
-/* Desktop: zobraz p\u0159i hoveru */
+/* Desktop (hover zařízení): otevírá se POUZE přes CSS hover — bez .open */
 @media (hover: hover) and (pointer: fine) {
   .has-dropdown:hover > .dropdown {
     display: flex;
   }
 }
 
-/* JS toggle (klik — funguje i na desktopu) */
-.has-dropdown.open > .dropdown {
-  display: flex;
+/* Dotyk (hover: none): otevírá se POUZE přes JS .open — bez hover */
+@media (hover: none) {
+  .has-dropdown.open > .dropdown {
+    display: flex;
+  }
 }
 
-/* === Mobiln\u00ed dropdown (max-width: 600px) === */
+/* === Mobilní dropdown (max-width: 600px) === */
 @media screen and (max-width: 600px) {
   .has-dropdown {
     position: static;
@@ -148,22 +150,13 @@ nav.site-nav ul {
     padding: 2px 0;
   }
 
-  /* Na mobilu POUZE p\u0159es JS toggle, ne hover */
-  .has-dropdown:hover > .dropdown {
-    display: none;
-  }
-
-  .has-dropdown.open > .dropdown {
-    display: flex !important;
-  }
-
   .dropdown a {
     padding: 6px 28px;
   }
 }
 `;
 
-// Injekce CSS do <head> (jednor\u00e1zov\u011b)
+// Injekce CSS do <head> (jednorázově)
 function injectDropdownStyles() {
   if (document.getElementById('site-nav-dropdown-css')) return;
   const style = document.createElement('style');
@@ -172,7 +165,7 @@ function injectDropdownStyles() {
   document.head.appendChild(style);
 }
 
-// Detekce hloubky — jsme v podslo\u017ece?
+// Detekce hloubky — jsme v podsložce?
 function getNavPrefix() {
   const SUBFOLDERS = ['web', 'network', 'hardware', 'bezpecnost', 'programovani', 'data', 'ai'];
   const parts = window.location.pathname.split('/');
@@ -180,7 +173,7 @@ function getNavPrefix() {
   return SUBFOLDERS.includes(currentDir) ? '../' : '';
 }
 
-// Je tato str\u00e1nka aktivn\u00ed?
+// Je tato stránka aktivní?
 function isActivePage(href) {
   const pathname = window.location.pathname;
   if (href === 'index.html') {
@@ -198,7 +191,7 @@ class SiteNav extends HTMLElement {
     const prefix = getNavPrefix();
 
     const items = NAV_MENU.map(entry => {
-      // P\u0159\u00edm\u00fd odkaz (Dom\u016f)
+      // Přímý odkaz (Domů)
       if (entry.href) {
         const active = isActivePage(entry.href);
         return `<li><a href="${prefix}${entry.href}"${active ? ' class="active"' : ''}>${entry.label}</a></li>`;
@@ -231,33 +224,47 @@ class SiteNav extends HTMLElement {
   <button class="btn-print" onclick="window.print()">&#128424; Tisk</button>
 </nav>`;
 
-    // Klik na dropdown button — toggle pro mobiln\u00ed i desktopov\u00e9 klik
-    this.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const li = btn.closest('.has-dropdown');
-        const isOpen = li.classList.contains('open');
+    // Click toggle POUZE na dotykových zařízeních (hover: none).
+    // Na hover zařízeních (myš) dropdown řídí výhradně CSS :hover — žádný JS toggle.
+    const isHoverDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!isHoverDevice) {
+      this.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          const li = btn.closest('.has-dropdown');
+          const isOpen = li.classList.contains('open');
 
-        // Zav\u0159i v\u0161echny ostatn\u00ed
-        this.querySelectorAll('.has-dropdown.open').forEach(el => {
-          if (el !== li) {
-            el.classList.remove('open');
-            el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
-          }
+          // Zavři všechny ostatní
+          this.querySelectorAll('.has-dropdown.open').forEach(el => {
+            if (el !== li) {
+              el.classList.remove('open');
+              el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Toggle aktuálního
+          li.classList.toggle('open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
         });
-
-        // Toggle aktu\u00e1ln\u00edho
-        li.classList.toggle('open', !isOpen);
-        btn.setAttribute('aria-expanded', String(!isOpen));
       });
-    });
 
-    // Klik mimo nav zav\u0159e dropdown
-    document.addEventListener('click', () => {
-      this.querySelectorAll('.has-dropdown.open').forEach(el => {
-        el.classList.remove('open');
-        el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+      // Klik mimo nav zavře dropdown
+      document.addEventListener('click', () => {
+        this.querySelectorAll('.has-dropdown.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+        });
       });
+    }
+
+    // Escape zavře všechny dropdowny (desktop i mobil)
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        this.querySelectorAll('.has-dropdown.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.nav-dropdown-btn').setAttribute('aria-expanded', 'false');
+        });
+      }
     });
   }
 }

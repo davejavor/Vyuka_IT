@@ -9,7 +9,10 @@
       "Bash(mv ip_dns.html network/)",
       "Bash(for f:*)",
       "Bash(do sed:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(mkdir -p img)",
+      "Bash(mv favicon.ico img/)",
+      "Bash(mv favicon2.ico img/)"
     ]
   }
 }
