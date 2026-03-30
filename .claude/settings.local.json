@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/davej/.claude/projects/c--Users-davej-Documents-Node-GITdavejavor-Vyuka-IT/memory/**)",
+      "Bash(mkdir -p web network hardware bezpecnost)",
+      "Bash(mv html.html web/)",
+      "Bash(mv css.html web/)",
+      "Bash(mv github.html web/)",
+      "Bash(mv ip_dns.html network/)",
+      "Bash(for f:*)",
+      "Bash(do sed:*)",
+      "Bash(done)"
+    ]
+  }
+}
