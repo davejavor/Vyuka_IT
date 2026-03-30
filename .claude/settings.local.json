@@ -13,6 +13,9 @@
       "Bash(mkdir -p img)",
       "Bash(mv favicon.ico img/)",
       "Bash(mv favicon2.ico img/)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\davej\\Documents\\Node\\GITdavejavor\\Vyuka_IT\\.claude"
     ]
   }
 }
