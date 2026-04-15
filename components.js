@@ -19,7 +19,7 @@ const NAV_MENU = [
   {
     label: "Hardware",
     items: [
-      { href: "microbit-display.html", label: "Micro:bit Basic" },
+      { href: "hardware/microbit-display.html", label: "Micro:bit Basic" },
       { href: "hardware/logicka_hradla.html", label: "Logick\u00e1 hradla"  },
       { href: "hardware/microbit-net.html",   label: "Micro:bit Network" },
     ]
