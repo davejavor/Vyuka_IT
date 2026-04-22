@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Od návrhu ke kódu — Tahák</title>
+    <link rel="stylesheet" href="../navody-print.css">
+    <script src="../components.js" defer></script>
+</head>
+<body>
+
+<header class="doc-header">
+    <span class="badge">Webové stránky</span>
+    <h1>Od návrhu ke kódu</h1>
+    <p class="subtitle">Jak přeložit papírovou skicu do HTML</p>
+</header>
+
+<section class="section">
+    <h2>1. Webovka = krabice v krabicích</h2>
+    <p>Každá stránka je v zásadě hierarchie krabic. Návrh na papíře je už strom krabic — HTML dělá to samé, jen místo tužky máš tagy.</p>
+    <p class="tip"><strong>Zkus si:</strong> v prohlížeči stiskni <kbd>F12</kbd> a koukni na libovolnou stránku. Uvidíš její krabice.</p>
+</section>
+
+<section class="section">
+    <h2>2. Mapování návrhu na HTML tag</h2>
+    <p>Místo <code>&lt;div&gt;</code> na všechno používáme <strong>sémantické tagy</strong>. Prohlížeč i čtečky stránek díky tomu vědí, co je co.</p>
+
+    <div class="two-col">
+        <div>
+            <h3>Velké krabice</h3>
+            <ul>
+                <li><code>&lt;header&gt;</code> — hlavička (logo, nadpis)</li>
+                <li><code>&lt;nav&gt;</code> — menu s odkazy</li>
+                <li><code>&lt;main&gt;</code> — hlavní obsah stránky</li>
+                <li><code>&lt;footer&gt;</code> — patička</li>
+                <li><code>&lt;aside&gt;</code> — postranní panel</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Uvnitř obsahu</h3>
+            <ul>
+                <li><code>&lt;section&gt;</code> — tématická sekce</li>
+                <li><code>&lt;article&gt;</code> — samostatný příspěvek</li>
+                <li><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code> — nadpisy</li>
+                <li><code>&lt;p&gt;</code> — odstavec textu</li>
+                <li><code>&lt;div&gt;</code> — krabice bez významu</li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="warning"><strong>Pravidlo:</strong> <code>&lt;main&gt;</code> má být na stránce jen <em>jeden</em>. <code>&lt;header&gt;</code> a <code>&lt;footer&gt;</code> obvykle taky.</p>
+</section>
+
+<section class="section">
+    <h2>3. Workflow: od vnějšku dovnitř</h2>
+    <ol class="steps">
+        <li><strong>Kostra</strong> — napiš <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>. Zatím prázdné.</li>
+        <li><strong>Sekce</strong> — co bude uvnitř <code>&lt;main&gt;</code>? Rozděl na <code>&lt;section&gt;</code>.</li>
+        <li><strong>Obsah</strong> — doplň nadpisy, text, obrázky, odkazy.</li>
+        <li><strong>Detaily</strong> — tlačítka, seznamy, formuláře.</li>
+        <li><strong>Styly</strong> — <em>až naposled</em>. Nejdřív struktura.</li>
+    </ol>
+    <p class="tip">Zasekl ses u kódu? Vrať se k papíru. Pokud to neví papír, neví to ani kód.</p>
+</section>
+
+<section class="section">
+    <h2>4. Vzorový kostra</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="cs"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Moje stránka&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Moje stránka&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#o-mne"&gt;O mně&lt;/a&gt;
+            &lt;a href="#projekty"&gt;Projekty&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="o-mne"&gt;
+            &lt;h2&gt;O mně&lt;/h2&gt;
+            &lt;p&gt;Ahoj, jsem...&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="projekty"&gt;
+            &lt;h2&gt;Projekty&lt;/h2&gt;
+            &lt;article&gt;
+                &lt;h3&gt;Projekt 1&lt;/h3&gt;
+                &lt;p&gt;Popis projektu.&lt;/p&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 Moje stránka&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section class="section">
+    <h2>5. Trik: zviditelni své krabice</h2>
+    <p>Dočasně přidej do CSS:</p>
+<pre><code>* {
+    outline: 1px solid red;
+}</code></pre>
+    <p>Každá krabice teď má červený okraj. Hned vidíš, jestli struktura odpovídá papíru. Po kontrole smaž.</p>
+</section>
+
+<section class="section">
+    <h2>6. Pojmenování tříd</h2>
+    <p>Pojmenuj třídy podle <strong>funkce</strong>, ne podle vzhledu:</p>
+    <div class="two-col">
+        <div>
+            <h3>✅ Dobře</h3>
+            <ul>
+                <li><code>.card</code></li>
+                <li><code>.hero</code></li>
+                <li><code>.product-grid</code></li>
+                <li><code>.contact-form</code></li>
+            </ul>
+        </div>
+        <div>
+            <h3>❌ Špatně</h3>
+            <ul>
+                <li><code>.red-box</code></li>
+                <li><code>.big-text</code></li>
+                <li><code>.left-side</code></li>
+                <li><code>.blue</code></li>
+            </ul>
+        </div>
+    </div>
+    <p class="tip">Co jsi pojmenoval na papíře ("hero", "galerie", "kontakt"), to bude v HTML třída nebo <code>id</code>. Papír = kontrakt.</p>
+</section>
+
+<section class="section">
+    <h2>7. Časté chyby</h2>
+    <ul>
+        <li><strong><code>&lt;div&gt;</code> na všechno</strong> — ztrácíš sémantiku. Zkus nejdřív najít sémantický tag.</li>
+        <li><strong>Zapomenutý <code>alt</code></strong> u <code>&lt;img&gt;</code> — porušuje přístupnost. Nevidomý nic neuvidí.</li>
+        <li><strong>Přeskakování nadpisů</strong> — <code>&lt;h1&gt;</code> → <code>&lt;h3&gt;</code> bez <code>&lt;h2&gt;</code> mezi tím.</li>
+        <li><strong><code>&lt;section&gt;</code> bez nadpisu</strong> — sekce musí mít nadpis (<code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>…).</li>
+        <li><strong>Míchání obsahu a stylu</strong> — barvy a fonty nepatří do HTML. Patří do CSS.</li>
+    </ul>
+</section>
+
+<details>
+    <summary>Bonus: Co dál?</summary>
+    <p>Až budeš mít kostru, pokračuj:</p>
+    <ul>
+        <li><strong>CSS</strong> — barvy, fonty, rozložení (grid, flexbox).</li>
+        <li><strong>Responzivita</strong> — jak stránka vypadá na mobilu (<code>@media</code>).</li>
+        <li><strong>JavaScript</strong> — interakce, animace, dynamický obsah.</li>
+    </ul>
+</details>
+
+<footer class="doc-footer">
+    <p>Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs">CC BY-SA 4.0</a> · <a href="index.html">Zpět na rozcestník</a></p>
+</footer>
+
+</body>
+</html>
