@@ -507,7 +507,6 @@ button { font-family: var(--font); }
 }
 .tweak-toggle input { cursor: pointer; accent-color: var(--cc, oklch(48% 0.22 228)); }
 
-/* ── PRINT (A5 brožura) ─────────────────── */
 @page {
   size: A5 portrait;
   margin: 8mm 8mm 12mm 8mm;
@@ -515,8 +514,7 @@ button { font-family: var(--font); }
 
 @media print {
   .site-header, .toc, .no-print, .adv-btn,
-  .hero-wrap, .search-wrap,
-  .tweaks-trigger, .tweaks-panel { display: none !important; }
+  .hero-wrap, .search-wrap { display: none !important; }
 
   .detail-wrap { display: block; padding: 0; max-width: 100%; }
   .detail-content { padding: 0; }
