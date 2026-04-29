@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logická hradla - Tahák | IT Návody</title>
-    <link rel="stylesheet" href="../navody-print.css">
-    <script src="../components.js"></script>
+    <title>Logická hradla — Tahák | IT Návody</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <script>if(localStorage.getItem('dark')==='true')document.documentElement.setAttribute('data-dark','true');</script>
 </head>
 <body>
 
-<site-nav></site-nav>
+<header class="site-header">
+  <div class="site-header-inner">
+    <nav class="breadcrumb">
+      <a class="bc-link" href="../index.html" style="text-decoration:none">IT Návody</a>
+      <span class="bc-sep">/</span>
+      <span style="color:oklch(46% 0.19 295)">Hardware</span>
+      <span class="bc-sep">/</span>
+      <span class="bc-cur">Logická hradla</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <button class="icon-btn no-print" onclick="window.print()">🖨 Tisknout</button>
+    <button class="icon-btn no-print" id="dark-btn" onclick="toggleDark()">☾ Tmavý</button>
+  </div>
+</header>
 
-```
-<header>
-    <h1>Logická hradla - Tahák</h1>
-    <p class="text-center text-muted">Přehled základních hradel, pravdivostní tabulky a troubleshooting</p>
+<div class="doc-wrap">
+
+<header class="doc-header">
+    <span class="badge" style="color:oklch(46% 0.19 295);background:oklch(94% 0.06 295);border:1px solid oklch(46% 0.19 295 / 30%)">Hardware</span>
+    <h1>Logická hradla — Tahák</h1>
+    <p class="subtitle">Přehled základních hradel, pravdivostní tabulky a troubleshooting</p>
 </header>
 
 <!-- ===================================
@@ -274,14 +291,15 @@ E = Emitter (emitor)</pre>
 <!-- ===================================
      PATIČKA
      =================================== -->
-<footer>
-    <p>
-        Autor: <strong>David</strong> | Montessori ZŠ Archa
-        <br>
-        Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a>
-    </p>
+<footer style="border-top:1px solid var(--border);padding-top:18px;margin-top:8px;font-size:13px;color:var(--tx-3)">
+  Autor: <strong style="color:var(--tx-2)">David</strong> · Montessori ZŠ Archa ·
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener" style="color:var(--tx-2);text-decoration:none">CC BY-SA 4.0</a>
 </footer>
-```
 
+</div>
+<script>
+function toggleDark(){var d=document.documentElement.getAttribute('data-dark')==='true';document.documentElement.setAttribute('data-dark',String(!d));localStorage.setItem('dark',String(!d));document.getElementById('dark-btn').textContent=!d?'☀ Světlý':'☾ Tmavý';}
+if(localStorage.getItem('dark')==='true')document.getElementById('dark-btn').textContent='☀ Světlý';
+</script>
 </body>
 </html>

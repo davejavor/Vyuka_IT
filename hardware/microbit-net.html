@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Micro:bit Network</title>
-  <link rel="stylesheet" href="../navody-print.css">
+  <title>Micro:bit — Rádiová síť | IT Návody</title>
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script>if(localStorage.getItem('dark')==='true')document.documentElement.setAttribute('data-dark','true');</script>
   <style>
     /* === Barvy specifické pro micro:bit / síť === */
     :root {
@@ -95,15 +99,29 @@
       .glossary  { grid-template-columns: 1fr; }
     }
   </style>
-  <script src="../components.js"></script>
 </head>
 <body>
 
-<site-nav></site-nav>
+<header class="site-header">
+  <div class="site-header-inner">
+    <nav class="breadcrumb">
+      <a class="bc-link" href="../index.html" style="text-decoration:none">IT Návody</a>
+      <span class="bc-sep">/</span>
+      <span style="color:oklch(46% 0.19 295)">Hardware</span>
+      <span class="bc-sep">/</span>
+      <span class="bc-cur">Micro:bit</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <button class="icon-btn no-print" onclick="window.print()">🖨 Tisknout</button>
+    <button class="icon-btn no-print" id="dark-btn" onclick="toggleDark()">☾ Tmavý</button>
+  </div>
+</header>
+
+<div class="doc-wrap">
 
 <!-- HLAVIČKA -->
 <header class="doc-header">
-  <span class="badge">micro:bit · Radio</span>
+  <span class="badge" style="color:oklch(46% 0.19 295);background:oklch(94% 0.06 295);border:1px solid oklch(46% 0.19 295 / 30%)">micro:bit · Radio</span>
   <h1>Rádiová síť: Net</h1>
   <p class="subtitle">Jeden micro:bit sbírá data — adresování, kolize a ztrátu paketů</p>
 </header>
@@ -415,11 +433,16 @@
 </section>
 
 <!-- PATIČKA -->
-<footer>
-  David · Montessori ZŠ Archa ·
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>
-  · MakeCode micro:bit · 2025
+<footer style="border-top:1px solid var(--border);padding-top:18px;margin-top:8px;font-size:13px;color:var(--tx-3)">
+  Autor: <strong style="color:var(--tx-2)">David</strong> · Montessori ZŠ Archa ·
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color:var(--tx-2);text-decoration:none">CC BY-SA 4.0</a>
+  · MakeCode micro:bit
 </footer>
 
+</div>
+<script>
+function toggleDark(){var d=document.documentElement.getAttribute('data-dark')==='true';document.documentElement.setAttribute('data-dark',String(!d));localStorage.setItem('dark',String(!d));document.getElementById('dark-btn').textContent=!d?'☀ Světlý':'☾ Tmavý';}
+if(localStorage.getItem('dark')==='true')document.getElementById('dark-btn').textContent='☀ Světlý';
+</script>
 </body>
 </html>

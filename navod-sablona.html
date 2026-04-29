@@ -5,11 +5,18 @@
   ŠABLONA PRO NOVÝ VÝUKOVÝ MATERIÁL
   ============================================================
   JAK POUŽÍVAT:
-  1. Zkopíruj tento soubor, přejmenuj ho (např. python.html)
-  2. Uprav <title> a téma v <body class="theme-...">
-     Dostupná témata: theme-html | theme-css | theme-github | (bez třídy = výchozí)
-  3. Doplň nav-logo a nav položky podle potřeby
+  1. Zkopíruj tento soubor do správné složky (web/, hardware/, …), přejmenuj
+  2. Uprav <title>, breadcrumb a badge barvu
+  3. Uprav cesty: soubory ve složkách používají "../" prefix
+     - href="../style.css", href="../img/favicon.ico", href="../index.html"
   4. Vyplň obsah sekcí, zakomentované bloky odkomentuj dle potřeby
+
+  BARVY KATEGORIÍ (oklch):
+  - Web:         oklch(48% 0.22 228)
+  - Sítě:        oklch(44% 0.16 185)
+  - Hardware:    oklch(32% 0.06 250)
+  - Bezpečnost:  oklch(40% 0.18 340)
+  - Hardware(purple): oklch(46% 0.19 295)
   ============================================================
 -->
 <html lang="cs">
@@ -18,26 +25,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- UPRAVIT: Název stránky -->
   <title>Název materiálu | IT Návody</title>
-  <link rel="stylesheet" href="navody-print.css">
-  <style>
-    /* Zde můžeš přidat specifické styly pro tento materiál */
-    /* Např. vlastní barva pro sekci: */
-    /* .my-section { border-left-color: #27ae60; } */
-  </style>
-  <script src="components.js"></script>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>if(localStorage.getItem('dark')==='true')document.documentElement.setAttribute('data-dark','true');</script>
 </head>
-<!-- UPRAVIT: Přidej třídu tématu podle obsahu materiálu
-     theme-html | theme-css | theme-github | (nebo nech bez třídy)  -->
 <body>
 
-<site-nav></site-nav>
+<header class="site-header">
+  <div class="site-header-inner">
+    <nav class="breadcrumb">
+      <a class="bc-link" href="index.html" style="text-decoration:none">IT Návody</a>
+      <span class="bc-sep">/</span>
+      <!-- UPRAVIT: Název a barva kategorie -->
+      <span style="color:oklch(48% 0.22 228)">Kategorie</span>
+      <span class="bc-sep">/</span>
+      <!-- UPRAVIT: Název stránky -->
+      <span class="bc-cur">Název materiálu</span>
+    </nav>
+    <div class="header-spacer"></div>
+    <button class="icon-btn no-print" onclick="window.print()">🖨 Tisknout</button>
+    <button class="icon-btn no-print" id="dark-btn" onclick="toggleDark()">☾ Tmavý</button>
+  </div>
+</header>
+
+<div class="doc-wrap">
 
 <!-- ===================================
      HLAVIČKA DOKUMENTU
      =================================== -->
 <header class="doc-header">
-  <!-- UPRAVIT: Text odznaku (HTML / CSS / GitHub / Logická hradla / …) -->
-  <span class="badge">Téma</span>
+  <!-- UPRAVIT: Text odznaku a barva (shodná s breadcrumb kategorií) -->
+  <span class="badge" style="color:oklch(48% 0.22 228);background:oklch(94% 0.06 228);border:1px solid oklch(48% 0.22 228 / 30%)">Téma</span>
   <!-- UPRAVIT: Název materiálu -->
   <h1>Název materiálu</h1>
   <!-- UPRAVIT: Stručný popis (nebo smaž řádek) -->
@@ -224,13 +244,15 @@
 <!-- ===================================
      PATIČKA S AUTOREM A LICENCÍ
      =================================== -->
-<footer>
-  <p>
-    Autor: <strong>David</strong> | Montessori ZŠ Archa<br>
-    Licence: <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener">CC BY-SA 4.0</a><br>
-    <span class="text-small">Můžeš volně sdílet a upravovat s uvedením autora.</span>
-  </p>
+<footer style="border-top:1px solid var(--border);padding-top:18px;margin-top:8px;font-size:13px;color:var(--tx-3)">
+  Autor: <strong style="color:var(--tx-2)">David</strong> · Montessori ZŠ Archa ·
+  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.cs" target="_blank" rel="noopener" style="color:var(--tx-2);text-decoration:none">CC BY-SA 4.0</a>
 </footer>
 
+</div>
+<script>
+function toggleDark(){var d=document.documentElement.getAttribute('data-dark')==='true';document.documentElement.setAttribute('data-dark',String(!d));localStorage.setItem('dark',String(!d));document.getElementById('dark-btn').textContent=!d?'☀ Světlý':'☾ Tmavý';}
+if(localStorage.getItem('dark')==='true')document.getElementById('dark-btn').textContent='☀ Světlý';
+</script>
 </body>
 </html>

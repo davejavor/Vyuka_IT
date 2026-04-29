@@ -301,37 +301,20 @@ function IndexView({ dark, setDark }) {
 
 /* ── APP ─────────────────────────────────── */
 function App() {
-  const { useTweaks, TweaksPanel, TweakSection, TweakToggle } = window;
+  const [dark, setDarkState] = useState(() => localStorage.getItem('dark') === 'true');
 
-  const [tweaks, setTweak] = useTweaks(/*EDITMODE-BEGIN*/{
-    "darkMode": false,
-    "largeCards": false
-  }/*EDITMODE-END*/);
-
-  const dark = tweaks.darkMode;
-  const setDark = (fn) => setTweak('darkMode', typeof fn === 'function' ? fn(dark) : fn);
-
-  useEffect(() => { document.documentElement.setAttribute('data-dark', dark); }, [dark]);
+  const setDark = (fn) => {
+    const next = typeof fn === 'function' ? fn(dark) : fn;
+    setDarkState(next);
+    localStorage.setItem('dark', next);
+    document.documentElement.setAttribute('data-dark', next);
+  };
 
   useEffect(() => {
-    const s = document.getElementById('dyn') || Object.assign(document.createElement('style'), { id: 'dyn' });
-    document.head.appendChild(s);
-    s.textContent = tweaks.largeCards
-      ? '.card { padding: 26px 26px 22px; } .card-title { font-size: 17px; }'
-      : '';
-  }, [tweaks.largeCards]);
+    document.documentElement.setAttribute('data-dark', dark);
+  }, []);
 
-  return (
-    <>
-      <IndexView dark={dark} setDark={setDark} />
-      <TweaksPanel>
-        <TweakSection label="Vzhled">
-          <TweakToggle id="darkMode" label="Tmavý režim" />
-          <TweakToggle id="largeCards" label="Větší karty" />
-        </TweakSection>
-      </TweaksPanel>
-    </>
-  );
+  return <IndexView dark={dark} setDark={setDark} />;
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
