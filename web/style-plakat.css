@@ -122,8 +122,13 @@ header {
   width: 98%;
 }
 .header-left  { 
-    flex: 5; 
+    flex: 4; 
 }
+
+.header-mid {
+    flex: 1;
+}
+
 .header-right {
     flex: 1;
 }
