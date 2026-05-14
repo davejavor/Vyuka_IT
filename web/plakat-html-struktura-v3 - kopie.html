@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Struktura webové stránky – A3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style-plakat.css">
+
+</head>
+<body>
+  <header>
+        <div class="header-left">
+            <div class="site-logo-row">
+              <div class="logo-box">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="site-name">Struktura webové stránky</div>
+            </div>
+            <div class="sec-badge" style="color:var(--c-header); border-color:#4C6EF5;">
+              &lt;header&gt;
+              <span class="sec-label">záhlaví — zobrazuje se nahoře na každé stránce</span>
+              <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/header&gt;</span>
+            </div>
+            <!-- nav -->
+            <div class="nav-visual">
+              <div class="nav-badge-row">
+                <span class="sec-badge" style="color:var(--c-nav); border-color:#3451C7; border-style:dashed; margin-bottom:0;">
+                  &lt;nav&gt;
+                  <span class="sec-label">navigační menu</span>
+                  <span style="margin-left:6px; opacity:.4; font-weight:400">&lt;/nav&gt;</span>
+                </span>
+              </div>
+              <div class="nav-links" style="margin-top:5px;">
+                <a href="#">Domů</a>
+                <a href="#">O nás</a>
+                <a href="#">Projekty</a>
+                <a href="#">Kontakt</a>
+              </div>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="snippet">
+  <span class="ck">&lt;header&gt;</span>
+    <span class="ck">&lt;img</span> <span class="ca">src</span>=<span class="cv">"logo.png"</span> <span class="ca">alt</span>=<span class="cv">"Logo"</span><span class="ck">&gt;</span>
+    <span class="ck">&lt;h1&gt;</span><span class="ct">MůjWeb.cz</span><span class="ck">&lt;/h1&gt;</span>
+    <span class="ck">&lt;nav&gt;</span>
+      <span class="ck">&lt;ul&gt;</span>
+        <span class="ck">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"/"</span><span class="ck">&gt;</span><span class="ct">Domů</span><span class="ck">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="ck">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#o-nas"</span><span class="ck">&gt;</span><span class="ct">O nás</span><span class="ck">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="ck">&lt;li&gt;&lt;a</span> <span class="ca">href</span>=<span class="cv">"#kontakt"</span><span class="ck">&gt;</span><span class="ct">Kontakt</span><span class="ck">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="ck">&lt;/ul&gt;</span>
+    <span class="ck">&lt;/nav&gt;</span>
+  <span class="ck">&lt;/header&gt;</span>
+            </div>
+          </div>
+  </header>
+
+<!--<div class="page">
+
+  <!-- poster title 
+  <div class="poster-head">
+    <div>
+      <h1>Struktura webové stránky</h1>
+      <p>Sémantické HTML5 elementy — jak se stránka skládá</p>
+    </div>
+    <div class="poster-meta">HTML5 · Sémantika<br>Montessori ZŠ Archa · Informatika</div>
+  </div>
+
+  <!-- browser window ->
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="b-dots">
+        <div class="b-dot r"></div><div class="b-dot y"></div><div class="b-dot g"></div>
+      </div>
+      <div class="b-url">https://moje-stranka.cz/</div>
+    </div>
+
+    <div class="webpage">
+
+      <!-- ═══ HEADER ═══ ->
+      <div class="site-header">
+
+        <div class="header-inner">
+          <!-- visual left -->
+          
+          <!-- code right ->
+          <!-- /header -->
+
+      <!-- ═══ MAIN ═══ ->
+      <div class="site-main">
+        <div class="main-badge-row">
+          <span class="sec-badge" style="color:var(--c-main); border-color:#16A34A;">
+            &lt;main&gt;
+            <span class="sec-label">hlavní obsah — na stránce smí být jen jeden</span>
+            <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/main&gt;</span>
+          </span>
+        </div>
+
+        <div class="main-grid">
+
+          <!-- SECTION 1 ->
+          <div class="site-section s1">
+            <span class="sec-badge" style="color:#065F46; border-color:#0D9488;">
+              &lt;section <span class="ca" style="font-weight:400">id</span>=<span style="color:#065F46">"o-mne"</span>&gt;
+              <span class="sec-label">tematická sekce</span>
+              <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/section&gt;</span>
+            </span>
+
+            <!-- div inside section 1 ->
+            <div class="site-div">
+              <span class="sec-badge" style="color:var(--c-div); border-color:#D97706; border-style:dashed; margin-bottom:4px;">
+                &lt;div <span class="ca" style="font-weight:400">id</span>=<span style="color:#065F46">"predstaveni"</span>&gt;
+                <span class="sec-label">obecný blok</span>
+                <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/div&gt;</span>
+              </span>
+              <div class="snippet" style="font-size:6.5pt;"><span class="ck">&lt;div</span> <span class="ca">id</span>=<span class="cv">"predstaveni"</span><span class="ck">&gt;</span>
+  <span class="ck">&lt;p&gt;</span><span class="ct">Jmenuji se Jan Novák.</span><span class="ck">&lt;/p&gt;</span>
+  <span class="ck">&lt;p&gt;</span><span class="ct">Studuji webdesign.</span><span class="ck">&lt;/p&gt;</span>
+<span class="ck">&lt;/div&gt;</span></div>
+            </div>
+
+            <!-- div inside section 1, second ->
+            <div class="site-div">
+              <span class="sec-badge" style="color:var(--c-div); border-color:#D97706; border-style:dashed; margin-bottom:4px;">
+                &lt;div <span class="ca" style="font-weight:400">id</span>=<span style="color:#065F46">"prace"</span>&gt;
+                <span class="sec-label">obecný blok</span>
+                <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/div&gt;</span>
+              </span>
+              <div class="snippet" style="font-size:6.5pt;"><span class="ck">&lt;div</span> <span class="ca">id</span>=<span class="cv">"prace"</span><span class="ck">&gt;</span>
+  <span class="ck">&lt;p&gt;</span><span class="ct">Práce a projekty...</span><span class="ck">&lt;/p&gt;</span>
+<span class="ck">&lt;/div&gt;</span></div>
+            </div>
+          </div><!-- /section 1 -->
+
+          <!-- SECTION 2 ->
+          <div class="site-section s2">
+            <span class="sec-badge" style="color:#1E40AF; border-color:#3B82F6;">
+              &lt;section <span class="ca" style="font-weight:400">id</span>=<span style="color:#065F46">"zajmy"</span>&gt;
+              <span class="sec-label">tematická sekce</span>
+              <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/section&gt;</span>
+            </span>
+            <div class="snippet" style="font-size:6.5pt; flex:1;"><span class="ck">&lt;section</span> <span class="ca">id</span>=<span class="cv">"zajmy"</span><span class="ck">&gt;</span>
+
+  <span class="ck">&lt;h2&gt;</span><span class="ct">Moje zájmy</span><span class="ck">&lt;/h2&gt;</span>
+
+  <span class="ck">&lt;ul&gt;</span>
+    <span class="ck">&lt;li&gt;</span><span class="ct">Programování</span><span class="ck">&lt;/li&gt;</span>
+    <span class="ck">&lt;li&gt;</span><span class="ct">Fotografování</span><span class="ck">&lt;/li&gt;</span>
+    <span class="ck">&lt;li&gt;</span><span class="ct">Cestování</span><span class="ck">&lt;/li&gt;</span>
+  <span class="ck">&lt;/ul&gt;</span>
+
+  <span class="ck">&lt;img</span> <span class="ca">src</span>=<span class="cv">"foto.jpg"</span>
+       <span class="ca">alt</span>=<span class="cv">"Moje fotografie"</span><span class="ck">&gt;</span>
+
+<span class="ck">&lt;/section&gt;</span></div>
+          </div><!-- /section 2 -->
+
+        </div><!-- /main-grid -->
+      </div><!-- /main -->
+
+      <!-- ═══ FOOTER ═══ ->
+      <div class="site-footer">
+        <div class="sec-badge" style="color:var(--c-footer); border-color:#EA580C; margin-bottom:6px;">
+          &lt;footer&gt;
+          <span class="sec-label">zápatí — zobrazuje se dole na každé stránce</span>
+          <span style="margin-left:auto; opacity:.4; font-weight:400">&lt;/footer&gt;</span>
+        </div>
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div style="font-size:8pt; color:var(--c-footer); font-weight:600; margin-bottom:4px;">© 2024 MůjWeb.cz · Všechna práva vyhrazena</div>
+            <div style="display:flex; gap:12px;">
+              <a href="#" style="font-size:7.5pt; color:var(--c-footer); font-weight:600; text-decoration:none; border-bottom:1px solid currentColor;">Podmínky</a>
+              <a href="#" style="font-size:7.5pt; color:var(--c-footer); font-weight:600; text-decoration:none; border-bottom:1px solid currentColor;">Ochrana soukromí</a>
+              <a href="#" style="font-size:7.5pt; color:var(--c-footer); font-weight:600; text-decoration:none; border-bottom:1px solid currentColor;">Kontakt</a>
+            </div>
+          </div>
+          <div class="footer-right">
+            <div class="snippet" style="font-size:6.5pt;"><span class="ck">&lt;footer&gt;</span>
+  <span class="ck">&lt;p&gt;</span><span class="ct">&amp;copy; 2024 MůjWeb.cz</span><span class="ck">&lt;/p&gt;</span>
+  <span class="ck">&lt;nav&gt;</span>
+    <span class="ck">&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ck">&gt;</span><span class="ct">Podmínky</span><span class="ck">&lt;/a&gt;</span>
+    <span class="ck">&lt;a</span> <span class="ca">href</span>=<span class="cv">"#"</span><span class="ck">&gt;</span><span class="ct">Kontakt</span><span class="ck">&lt;/a&gt;</span>
+  <span class="ck">&lt;/nav&gt;</span>
+<span class="ck">&lt;/footer&gt;</span></div>
+          </div>
+        </div>
+      </div><!-- /footer -->
+
+    </div><!-- /webpage -->
+  </div><!-- /browser -->
+
+  <!-- LEGEND ->
+  <div class="legend">
+    <div class="legend-title">Barevná legenda</div>
+    <div class="litem">
+      <span class="ltag" style="color:#2C42C0;border-color:#4C6EF5;background:#EDF2FF">&lt;header&gt;</span> Záhlaví
+    </div><span class="lsep">·</span>
+    <div class="litem">
+      <span class="ltag" style="color:#1E3A8A;border-color:#3451C7;background:#DBE4FF;border-style:dashed">&lt;nav&gt;</span> Navigace
+    </div><span class="lsep">·</span>
+    <div class="litem">
+      <span class="ltag" style="color:#14532D;border-color:#16A34A;background:#F0FDF4">&lt;main&gt;</span> Hlavní obsah
+    </div><span class="lsep">·</span>
+    <div class="litem">
+      <span class="ltag" style="color:#065F46;border-color:#0D9488;background:#F0FDFA">&lt;section&gt;</span> Tematická sekce
+    </div><span class="lsep">·</span>
+    <div class="litem">
+      <span class="ltag" style="color:#78350F;border-color:#D97706;background:#FFFBEB;border-style:dashed">&lt;div&gt;</span> Obecný blok
+    </div><span class="lsep">·</span>
+    <div class="litem">
+      <span class="ltag" style="color:#9A3412;border-color:#EA580C;background:#FFF7ED">&lt;footer&gt;</span> Zápatí
+    </div>
+    <div class="ldash">přerušovaný rámeček = element bez sémantického významu</div>
+  </div>
+
+</div>
+</body>
+</html>
