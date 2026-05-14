@@ -133,6 +133,11 @@ header {
     flex: 1;
 }
 
+h2.code {
+  text-align: center;
+  margin-top: -30px;
+}
+
 .site-logo-row {
   display: flex; align-items: center; gap: 10px; margin-bottom: 7px;
 }
